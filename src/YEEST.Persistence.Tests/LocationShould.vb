@@ -4,6 +4,7 @@ Imports Xunit
 Imports YEEST.Data
 
 Public Class LocationShould
+
     <Fact>
     Sub have_a_location_id()
         Dim w = World.Create(New Data.WorldData)
@@ -59,5 +60,18 @@ Public Class LocationShould
         Dim actual As Boolean = subject.HasMetadata(MetadataKey)
 
         actual.ShouldBeFalse
+    End Sub
+    <Fact>
+    Sub return_true_when_metadata_key_id_found_when_calling_HasMetadata()
+        Const MetadataKey = "key"
+        Const MetadataValue As String = "value"
+        Dim data = New WorldData
+        Dim w As IWorld = World.Create(data)
+        Dim subject = w.CreateLocation
+        subject.SetMetadata(MetadataKey, MetadataValue)
+
+        Dim actual As Boolean = subject.HasMetadata(MetadataKey)
+
+        actual.ShouldBeTrue
     End Sub
 End Class

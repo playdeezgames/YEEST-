@@ -22,6 +22,6 @@ Friend Class Location
     End Function
 
     Public Function HasMetadata(key As String) As Boolean Implements ILocation.HasMetadata
-        Return False
+        Return LocationData.Metadatas.ContainsKey(key)
     End Function
 End Class
