@@ -9,7 +9,7 @@ Friend Class LocationDataClient
     End Sub
     Protected ReadOnly Property LocationData As LocationData
         Get
-            Return data.Locations(locationId)
+            Return WorldData.Locations(locationId)
         End Get
     End Property
 End Class
