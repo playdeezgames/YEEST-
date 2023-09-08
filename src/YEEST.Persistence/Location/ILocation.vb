@@ -1,7 +1,4 @@
 ﻿Public Interface ILocation
+    Inherits IMetadataHolder
     ReadOnly Property Id As Integer
-    Sub SetMetadata(key As String, value As String)
-    Sub RemoveMetadata(key As String)
-    Function GetMetadata(key As String) As String
-    Function HasMetadata(key As String) As Boolean
 End Interface
