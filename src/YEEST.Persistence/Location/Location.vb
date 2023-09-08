@@ -9,7 +9,7 @@ Friend Class Location
 
     Public ReadOnly Property Id As Integer Implements ILocation.Id
         Get
-            Return locationId
+            Return LocationId
         End Get
     End Property
 
