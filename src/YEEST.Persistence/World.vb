@@ -13,4 +13,8 @@ Public Class World
     Public Shared Function Create() As IWorld
         Return New World()
     End Function
+
+    Public Function CreateLocation() As ILocation Implements IWorld.CreateLocation
+        Return New Location()
+    End Function
 End Class
