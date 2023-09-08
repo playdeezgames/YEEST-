@@ -28,7 +28,7 @@ Public Class WorldShould
 
         actual.ShouldNotBeNull()
         data.Locations.ShouldHaveSingleItem()
-        subject.SerializedData.ShouldBe("{""Locations"":[{}],""Metadatas"":{}}")
+        subject.SerializedData.ShouldBe("{""Locations"":[{""Metadatas"":{}}],""Metadatas"":{}}")
     End Sub
     <Fact>
     Sub store_metadata_when_calling_SetMetadata()

@@ -14,4 +14,8 @@ Friend Class Location
             Return locationId
         End Get
     End Property
+
+    Public Sub SetMetadata(key As String, value As String) Implements ILocation.SetMetadata
+        data.Locations(locationId).Metadatas(key) = value
+    End Sub
 End Class
