@@ -5,7 +5,7 @@ Public Class World
     Inherits WorldDataClient
     Implements IWorld
     Private Sub New(data As WorldData)
-        MyBase.New(data, Function() data.Metadatas)
+        MyBase.New(data)
     End Sub
 
     Public ReadOnly Property SerializedData As String Implements IWorld.SerializedData
@@ -14,13 +14,11 @@ Public Class World
         End Get
     End Property
 
-    Public Sub SetMetadata(key As String, value As String) Implements IWorld.SetMetadata
-        WorldData.Metadatas(key) = value
-    End Sub
-
-    Public Sub RemoveMetadata(key As String) Implements IWorld.RemoveMetadata
-        WorldData.Metadatas.Remove(key)
-    End Sub
+    Protected Overrides ReadOnly Property MetadataSource As Dictionary(Of String, String)
+        Get
+            Return WorldData.Metadatas
+        End Get
+    End Property
 
     Public Shared Function Create(data As WorldData) As IWorld
         Return New World(data)
@@ -30,13 +28,5 @@ Public Class World
         Dim locationId = WorldData.Locations.Count
         WorldData.Locations.Add(New LocationData())
         Return New Location(WorldData, locationId)
-    End Function
-
-    Public Function GetMetadata(metadataKey As String) As String Implements IWorld.GetMetadata
-        Return WorldData.Metadatas(metadataKey)
-    End Function
-
-    Public Function HasMetadata(metadataKey As String) As Boolean Implements IWorld.HasMetadata
-        Return WorldData.Metadatas.ContainsKey(metadataKey)
     End Function
 End Class

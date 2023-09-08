@@ -12,20 +12,4 @@ Friend Class Location
             Return LocationId
         End Get
     End Property
-
-    Public Sub SetMetadata(key As String, value As String) Implements ILocation.SetMetadata
-        LocationData.Metadatas(key) = value
-    End Sub
-
-    Public Sub RemoveMetadata(key As String) Implements ILocation.RemoveMetadata
-        LocationData.Metadatas.Remove(key)
-    End Sub
-
-    Public Function GetMetadata(key As String) As String Implements ILocation.GetMetadata
-        Return LocationData.Metadatas(key)
-    End Function
-
-    Public Function HasMetadata(key As String) As Boolean Implements ILocation.HasMetadata
-        Return LocationData.Metadatas.ContainsKey(key)
-    End Function
 End Class
