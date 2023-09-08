@@ -16,10 +16,16 @@ Friend Class Location
     End Property
 
     Public Sub SetMetadata(key As String, value As String) Implements ILocation.SetMetadata
-        data.Locations(locationId).Metadatas(key) = value
+        LocationData.Metadatas(key) = value
     End Sub
 
+    Private ReadOnly Property LocationData As LocationData
+        Get
+            Return data.Locations(locationId)
+        End Get
+    End Property
+
     Public Function GetMetadata(key As String) As String Implements ILocation.GetMetadata
-        Return data.Locations(locationId).Metadatas(key)
+        Return LocationData.Metadatas(key)
     End Function
 End Class
