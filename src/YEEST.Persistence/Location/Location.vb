@@ -20,4 +20,8 @@ Friend Class Location
     Public Function GetMetadata(key As String) As String Implements ILocation.GetMetadata
         Return LocationData.Metadatas(key)
     End Function
+
+    Public Function HasMetadata(key As String) As Boolean Implements ILocation.HasMetadata
+        Return False
+    End Function
 End Class
