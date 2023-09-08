@@ -2,10 +2,10 @@ Imports System.Text.Json
 Imports YEEST.Data
 
 Public Class World
+    Inherits WorldDataClient
     Implements IWorld
-    Private ReadOnly data As WorldData
     Private Sub New(data As WorldData)
-        Me.data = data
+        MyBase.New(data)
     End Sub
 
     Public ReadOnly Property SerializedData As String Implements IWorld.SerializedData
