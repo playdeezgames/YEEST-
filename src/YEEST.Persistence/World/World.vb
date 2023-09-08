@@ -14,12 +14,6 @@ Public Class World
         End Get
     End Property
 
-    Protected Overrides ReadOnly Property MetadataSource As Dictionary(Of String, String)
-        Get
-            Return WorldData.Metadatas
-        End Get
-    End Property
-
     Public Shared Function Create(data As WorldData) As IWorld
         Return New World(data)
     End Function
