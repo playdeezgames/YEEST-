@@ -3,4 +3,5 @@
     Function CreateLocation() As ILocation
     Sub SetMetadata(key As String, value As String)
     Function GetMetadata(metadataKey As String) As String
+    Function HasMetadata(metadataKey As String) As Boolean
 End Interface

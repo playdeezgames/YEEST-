@@ -31,4 +31,8 @@ Public Class World
     Public Function GetMetadata(metadataKey As String) As String Implements IWorld.GetMetadata
         Return data.Metadatas(metadataKey)
     End Function
+
+    Public Function HasMetadata(metadataKey As String) As Boolean Implements IWorld.HasMetadata
+        Return False
+    End Function
 End Class
