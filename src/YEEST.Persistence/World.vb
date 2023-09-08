@@ -14,6 +14,10 @@ Public Class World
         End Get
     End Property
 
+    Public Sub SetMetadata(key As String, value As String) Implements IWorld.SetMetadata
+        data.Metadatas(key) = value
+    End Sub
+
     Public Shared Function Create(data As WorldData) As IWorld
         Return New World(data)
     End Function
