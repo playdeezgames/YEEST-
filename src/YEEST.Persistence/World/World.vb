@@ -5,7 +5,7 @@ Public Class World
     Inherits WorldDataClient
     Implements IWorld
     Private Sub New(data As WorldData)
-        MyBase.New(data)
+        MyBase.New(data, Function() data.Metadatas)
     End Sub
 
     Public ReadOnly Property SerializedData As String Implements IWorld.SerializedData
