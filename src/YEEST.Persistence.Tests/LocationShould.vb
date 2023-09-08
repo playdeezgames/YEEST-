@@ -74,4 +74,18 @@ Public Class LocationShould
 
         actual.ShouldBeTrue
     End Sub
+    <Fact>
+    Sub remove_metadata_after_adding_it_when_calling_RemoveMetadata()
+        Const MetadataKey = "key"
+        Const MetadataValue As String = "value"
+        Dim data = New WorldData
+        Dim w As IWorld = World.Create(data)
+        Dim subject = w.CreateLocation
+        subject.SetMetadata(MetadataKey, MetadataValue)
+
+        subject.RemoveMetadata(MetadataKey)
+
+        Dim actual As Boolean = subject.HasMetadata(MetadataKey)
+        actual.ShouldBeFalse
+    End Sub
 End Class

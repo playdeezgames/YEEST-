@@ -17,6 +17,10 @@ Friend Class Location
         LocationData.Metadatas(key) = value
     End Sub
 
+    Public Sub RemoveMetadata(key As String) Implements ILocation.RemoveMetadata
+        LocationData.Metadatas.Remove(key)
+    End Sub
+
     Public Function GetMetadata(key As String) As String Implements ILocation.GetMetadata
         Return LocationData.Metadatas(key)
     End Function
