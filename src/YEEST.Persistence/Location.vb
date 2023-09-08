@@ -1,11 +1,11 @@
 ﻿Imports YEEST.Data
 
 Friend Class Location
+    Inherits LocationDataClient
     Implements ILocation
-    Private ReadOnly data As WorldData
     Private ReadOnly locationId As Integer
     Sub New(data As WorldData, locationId As Integer)
-        Me.data = data
+        MyBase.New(data)
         Me.locationId = locationId
     End Sub
 
