@@ -18,6 +18,10 @@ Public Class World
         data.Metadatas(key) = value
     End Sub
 
+    Public Sub RemoveMetadata(key As String) Implements IWorld.RemoveMetadata
+        data.Metadatas.Remove(key)
+    End Sub
+
     Public Shared Function Create(data As WorldData) As IWorld
         Return New World(data)
     End Function

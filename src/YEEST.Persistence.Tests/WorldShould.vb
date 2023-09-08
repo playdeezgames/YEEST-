@@ -77,9 +77,21 @@ Public Class WorldShould
         Const MetadataValue = "value"
         Dim data = New WorldData
         Dim subject As IWorld = World.Create(data)
-
         subject.SetMetadata(MetadataKey, MetadataValue)
+
         subject.HasMetadata(MetadataKey).ShouldBeTrue
+    End Sub
+    <Fact>
+    Sub remove_metadata_after_adding_it_when_calling_RemoveMetadata()
+        Const MetadataKey = "key"
+        Const MetadataValue = "value"
+        Dim data = New WorldData
+        Dim subject As IWorld = World.Create(data)
+        subject.SetMetadata(MetadataKey, MetadataValue)
+
+        subject.RemoveMetadata(MetadataKey)
+
+        subject.HasMetadata(MetadataKey).ShouldBeFalse
     End Sub
 End Class
 
