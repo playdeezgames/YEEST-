@@ -40,5 +40,28 @@ Public Class WorldShould
         subject.SerializedData.ShouldContain(MetadataKey)
         subject.SerializedData.ShouldContain(MetadataValue)
     End Sub
+    <Fact>
+    Sub retrieve_metadata()
+        Const MetadataKey = "key"
+        Const MetadataValue = "value"
+        Dim data = New WorldData
+        Dim subject As IWorld = World.Create(data)
+
+        subject.SetMetadata(MetadataKey, MetadataValue)
+        Dim actual = subject.GetMetadata(MetadataKey)
+
+        actual.ShouldBe(MetadataValue)
+    End Sub
+    <Fact>
+    Sub throw_exception_when_metadata_key_not_found()
+        Const MetadataKey = "key"
+        Dim data = New WorldData
+        Dim subject As IWorld = World.Create(data)
+
+        Should.Throw(Of KeyNotFoundException)(
+            Sub()
+                subject.GetMetadata(MetadataKey)
+            End Sub)
+    End Sub
 End Class
 

@@ -27,4 +27,8 @@ Public Class World
         data.Locations.Add(New LocationData())
         Return New Location(data, locationId)
     End Function
+
+    Public Function GetMetadata(metadataKey As String) As String Implements IWorld.GetMetadata
+        Return data.Metadatas(metadataKey)
+    End Function
 End Class
