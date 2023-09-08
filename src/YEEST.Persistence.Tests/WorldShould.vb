@@ -24,6 +24,7 @@ Public Class WorldShould
 
         actual.ShouldNotBeNull()
         data.Locations.ShouldHaveSingleItem()
+        subject.SerializedData.ShouldBe("{""Locations"":[{}]}")
     End Sub
 End Class
 
