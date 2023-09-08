@@ -8,4 +8,10 @@ Friend Class Location
         Me.data = data
         Me.locationId = locationId
     End Sub
+
+    Public ReadOnly Property Id As Integer Implements ILocation.Id
+        Get
+            Return locationId
+        End Get
+    End Property
 End Class
