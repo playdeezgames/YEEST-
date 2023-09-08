@@ -99,6 +99,8 @@ Public Class WorldShould
         subject.RemoveMetadata(MetadataKey)
 
         subject.HasMetadata(MetadataKey).ShouldBeFalse
+        subject.SerializedData.ShouldNotContain(MetadataKey)
+        subject.SerializedData.ShouldNotContain(MetadataValue)
     End Sub
 End Class
 
