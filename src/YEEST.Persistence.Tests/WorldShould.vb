@@ -5,7 +5,9 @@ Imports YEEST.Data
 Public Class WorldShould
     <Fact>
     Sub be_instantiable_when_calling_World__Create()
-        Dim subject As IWorld = World.Create(New WorldData)
+        Dim data As New WorldData
+
+        Dim subject As IWorld = World.Create(data)
 
         subject.ShouldNotBeNull
     End Sub
@@ -13,7 +15,9 @@ Public Class WorldShould
     Sub serialize_when_calling_SerializedData()
         Dim subject As IWorld = World.Create(New WorldData)
 
-        subject.SerializedData.ShouldBe("{""Locations"":[],""Metadatas"":{}}")
+        Dim actual = subject.SerializedData
+
+        actual.ShouldBe("{""Locations"":[],""Metadatas"":{}}")
     End Sub
     <Fact>
     Sub create_location_when_calling_CreateLocation()
@@ -46,8 +50,8 @@ Public Class WorldShould
         Const MetadataValue = "value"
         Dim data = New WorldData
         Dim subject As IWorld = World.Create(data)
-
         subject.SetMetadata(MetadataKey, MetadataValue)
+
         Dim actual = subject.GetMetadata(MetadataKey)
 
         actual.ShouldBe(MetadataValue)
@@ -58,10 +62,9 @@ Public Class WorldShould
         Dim data = New WorldData
         Dim subject As IWorld = World.Create(data)
 
-        Should.Throw(Of KeyNotFoundException)(
-            Sub()
-                subject.GetMetadata(MetadataKey)
-            End Sub)
+        Dim action = Sub() subject.GetMetadata(MetadataKey)
+
+        Should.Throw(Of KeyNotFoundException)(action)
     End Sub
     <Fact>
     Sub return_false_when_metadata_key_not_found_when_calling_HasMetadata()
@@ -69,7 +72,9 @@ Public Class WorldShould
         Dim data = New WorldData
         Dim subject As IWorld = World.Create(data)
 
-        subject.HasMetadata(MetadataKey).ShouldBeFalse
+        Dim actual = subject.HasMetadata(MetadataKey)
+
+        actual.ShouldBeFalse
     End Sub
     <Fact>
     Sub return_true_when_metadata_key_id_found_when_calling_HasMetadata()
@@ -79,7 +84,9 @@ Public Class WorldShould
         Dim subject As IWorld = World.Create(data)
         subject.SetMetadata(MetadataKey, MetadataValue)
 
-        subject.HasMetadata(MetadataKey).ShouldBeTrue
+        Dim actual = subject.HasMetadata(MetadataKey)
+
+        actual.ShouldBeTrue
     End Sub
     <Fact>
     Sub remove_metadata_after_adding_it_when_calling_RemoveMetadata()
