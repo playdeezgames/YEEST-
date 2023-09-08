@@ -17,11 +17,13 @@ Public Class WorldShould
     End Sub
     <Fact>
     Sub create_location()
-        Dim subject As IWorld = World.Create(New WorldData)
+        Dim data = New WorldData
+        Dim subject As IWorld = World.Create(data)
 
         Dim actual = subject.CreateLocation()
 
         actual.ShouldNotBeNull()
+        data.Locations.ShouldHaveSingleItem()
     End Sub
 End Class
 
