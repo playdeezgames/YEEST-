@@ -25,4 +25,17 @@ Public Class LocationShould
 
         data.Locations(0).Metadatas.ShouldContainKeyAndValue(MetadataKey, MetadataValue)
     End Sub
+    <Fact>
+    Sub retrieve_metadata_when_calling_GetMetadata()
+        Const MetadataKey = "key"
+        Const MetadataValue = "value"
+        Dim data = New WorldData
+        Dim w As IWorld = World.Create(data)
+        Dim subject = w.CreateLocation
+        subject.SetMetadata(MetadataKey, MetadataValue)
+
+        Dim actual As String = subject.GetMetadata(MetadataKey)
+
+        actual.ShouldBe(MetadataValue)
+    End Sub
 End Class

@@ -18,4 +18,8 @@ Friend Class Location
     Public Sub SetMetadata(key As String, value As String) Implements ILocation.SetMetadata
         data.Locations(locationId).Metadatas(key) = value
     End Sub
+
+    Public Function GetMetadata(key As String) As String Implements ILocation.GetMetadata
+        Return data.Locations(locationId).Metadatas(key)
+    End Function
 End Class
