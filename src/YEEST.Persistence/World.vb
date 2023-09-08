@@ -33,6 +33,6 @@ Public Class World
     End Function
 
     Public Function HasMetadata(metadataKey As String) As Boolean Implements IWorld.HasMetadata
-        Return False
+        Return data.Metadatas.ContainsKey(metadataKey)
     End Function
 End Class
