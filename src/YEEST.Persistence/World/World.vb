@@ -23,4 +23,10 @@ Public Class World
         WorldData.Locations.Add(New LocationData())
         Return New Location(WorldData, locationId)
     End Function
+
+    Public Function CreateCharacter() As ICharacter Implements IWorld.CreateCharacter
+        Dim characterId = WorldData.Characters.Count
+        WorldData.Characters.Add(New CharacterData())
+        Return New Character(WorldData, characterId)
+    End Function
 End Class

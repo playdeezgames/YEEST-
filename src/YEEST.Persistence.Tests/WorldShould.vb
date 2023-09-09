@@ -31,6 +31,17 @@ Public Class WorldShould
         data.Locations.ShouldHaveSingleItem()
         subject.SerializedData.ShouldBe("{""Locations"":[{""Metadatas"":{}}],""Characters"":[],""Metadatas"":{}}")
     End Sub
+    <Fact>
+    Sub create_character_when_calling_CreateCharacter()
+        Dim data = New WorldData
+        Dim subject As IWorld = World.Create(data)
+
+        Dim actual As ICharacter = subject.CreateCharacter()
+
+        actual.ShouldNotBeNull()
+        data.Characters.ShouldHaveSingleItem()
+        subject.SerializedData.ShouldBe("{""Locations"":[],""Characters"":[{""Metadatas"":{}}],""Metadatas"":{}}")
+    End Sub
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As IWorld)
         subject.SerializedData.ShouldContain(key)
         subject.SerializedData.ShouldContain(value)
