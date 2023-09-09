@@ -32,9 +32,7 @@ Public Class WorldShould
     End Sub
     <Fact>
     Sub store_metadata_when_calling_SetMetadata()
-        DoSetMetadataTest(Function(d)
-                              Return World.Create(d)
-                          End Function,
+        DoSetMetadataTest(AddressOf World.Create,
                           Sub(k, v, d, s)
                               s.SerializedData.ShouldContain(k)
                               s.SerializedData.ShouldContain(v)
@@ -42,18 +40,9 @@ Public Class WorldShould
                               d.Metadatas.ShouldContainKeyAndValue(k, v)
                           End Sub)
     End Sub
-
     <Fact>
     Sub retrieve_metadata_when_calling_GetMetadata()
-        Const MetadataKey = "key"
-        Const MetadataValue = "value"
-        Dim data = New WorldData
-        Dim subject As IWorld = World.Create(data)
-        subject.SetMetadata(MetadataKey, MetadataValue)
-
-        Dim actual = subject.GetMetadata(MetadataKey)
-
-        actual.ShouldBe(MetadataValue)
+        DoGetMetadataTest(AddressOf World.Create)
     End Sub
     <Fact>
     Sub throw_exception_when_metadata_key_not_found_when_calling_GetMetadata()

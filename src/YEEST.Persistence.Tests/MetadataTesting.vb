@@ -1,4 +1,7 @@
-﻿Friend Module MetadataTesting
+﻿Imports Shouldly
+Imports YEEST.Data
+
+Friend Module MetadataTesting
     Friend Sub DoSetMetadataTest(Of THolder As IHolder)(
                                                        instantiator As Func(Of Data.WorldData, THolder),
                                                        Optional validator As Action(Of String, String, Data.WorldData, THolder) = Nothing)
@@ -10,5 +13,16 @@
         If validator IsNot Nothing Then
             validator(MetadataKey, MetadataValue, data, subject)
         End If
+    End Sub
+    Friend Sub DoGetMetadataTest(Of THolder As IHolder)(instantiator As Func(Of Data.WorldData, THolder))
+        Const MetadataKey = "key"
+        Const MetadataValue = "value"
+        Dim data = New WorldData
+        Dim subject As IHolder = instantiator(data)
+        subject.SetMetadata(MetadataKey, MetadataValue)
+
+        Dim actual As String = subject.GetMetadata(MetadataKey)
+
+        actual.ShouldBe(MetadataValue)
     End Sub
 End Module

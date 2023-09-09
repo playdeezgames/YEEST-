@@ -13,29 +13,19 @@ Public Class LocationShould
         subject.ShouldNotBeNull
         subject.Id.ShouldBe(0)
     End Sub
+    Private Shared Function CreateSubject(data As Data.WorldData) As ILocation
+        Return World.Create(data).CreateLocation
+    End Function
     <Fact>
     Sub store_metadata_when_calling_SetMetadata()
-        DoSetMetadataTest(
-            Function(d)
-                Dim w As IWorld = World.Create(d)
-                Return w.CreateLocation
-            End Function,
+        DoSetMetadataTest(AddressOf CreateSubject,
             Sub(k, v, d, s)
                 d.Locations(0).Metadatas.ShouldContainKeyAndValue(k, v)
             End Sub)
     End Sub
     <Fact>
     Sub retrieve_metadata_when_calling_GetMetadata()
-        Const MetadataKey = "key"
-        Const MetadataValue = "value"
-        Dim data = New WorldData
-        Dim w As IWorld = World.Create(data)
-        Dim subject = w.CreateLocation
-        subject.SetMetadata(MetadataKey, MetadataValue)
-
-        Dim actual As String = subject.GetMetadata(MetadataKey)
-
-        actual.ShouldBe(MetadataValue)
+        DoGetMetadataTest(AddressOf CreateSubject)
     End Sub
     <Fact>
     Sub throw_exception_when_metadata_key_not_found_when_calling_GetMetadata()
