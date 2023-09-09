@@ -18,7 +18,7 @@ Public Class WorldShould
 
         Dim actual = subject.SerializedData
 
-        actual.ShouldBe("{""Locations"":[],""Characters"":[],""Metadatas"":{}}")
+        actual.ShouldBe("{""Locations"":[],""Characters"":[],""Metadatas"":{},""Flags"":[]}")
     End Sub
     <Fact>
     Sub create_location_when_calling_CreateLocation()
@@ -29,7 +29,7 @@ Public Class WorldShould
 
         actual.ShouldNotBeNull()
         data.Locations.ShouldHaveSingleItem()
-        subject.SerializedData.ShouldBe("{""Locations"":[{""Metadatas"":{}}],""Characters"":[],""Metadatas"":{}}")
+        subject.SerializedData.ShouldBe("{""Locations"":[{""Metadatas"":{},""Flags"":[]}],""Characters"":[],""Metadatas"":{},""Flags"":[]}")
     End Sub
     <Fact>
     Sub create_character_when_calling_CreateCharacter()
@@ -40,7 +40,7 @@ Public Class WorldShould
 
         actual.ShouldNotBeNull()
         data.Characters.ShouldHaveSingleItem()
-        subject.SerializedData.ShouldBe("{""Locations"":[],""Characters"":[{""Metadatas"":{}}],""Metadatas"":{}}")
+        subject.SerializedData.ShouldBe("{""Locations"":[],""Characters"":[{""Metadatas"":{},""Flags"":[]}],""Metadatas"":{},""Flags"":[]}")
     End Sub
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As IWorld)
         subject.SerializedData.ShouldContain(key)
