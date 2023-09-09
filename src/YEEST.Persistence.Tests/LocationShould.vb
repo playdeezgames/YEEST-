@@ -29,14 +29,7 @@ Public Class LocationShould
     End Sub
     <Fact>
     Sub throw_exception_when_metadata_key_not_found_when_calling_GetMetadata()
-        Const MetadataKey = "key"
-        Dim data = New WorldData
-        Dim w As IWorld = World.Create(data)
-        Dim subject = w.CreateLocation
-
-        Dim action = Sub() subject.GetMetadata(MetadataKey)
-
-        Should.Throw(Of KeyNotFoundException)(action)
+        DoGetMetadataNotFoundTest(AddressOf CreateSubject)
     End Sub
     <Fact>
     Sub return_false_when_metadata_key_not_found_when_calling_HasMetadata()
