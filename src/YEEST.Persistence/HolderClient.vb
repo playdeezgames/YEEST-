@@ -1,5 +1,5 @@
 ﻿Public MustInherit Class HolderClient
-    Implements IMetadataHolder
+    Implements IHolder
     Protected MustOverride ReadOnly Property MetadataSource As Dictionary(Of String, String)
 
     Public Sub SetMetadata(key As String, value As String) Implements IMetadataHolder.SetMetadata

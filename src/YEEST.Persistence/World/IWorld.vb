@@ -1,5 +1,5 @@
 ﻿Public Interface IWorld
-    Inherits IMetadataHolder
+    Inherits IHolder
     ReadOnly Property SerializedData As String
     Function CreateLocation() As ILocation
 End Interface

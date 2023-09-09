@@ -22,7 +22,7 @@ Public Class LocationShould
         Dim w As IWorld = World.Create(data)
         Dim subject = w.CreateLocation
 
-        subject.SetMetadata(MetadataKey, MetadataValue)
+        DoSetMetadataTest(MetadataKey, MetadataValue, subject)
 
         data.Locations(0).Metadatas.ShouldContainKeyAndValue(MetadataKey, MetadataValue)
     End Sub

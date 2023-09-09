@@ -1,4 +1,4 @@
 ﻿Public Interface ILocation
-    Inherits IMetadataHolder
+    Inherits IHolder
     ReadOnly Property Id As Integer
 End Interface

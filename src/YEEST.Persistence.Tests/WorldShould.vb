@@ -37,13 +37,15 @@ Public Class WorldShould
         Dim data = New WorldData
         Dim subject As IWorld = World.Create(data)
 
-        subject.SetMetadata(MetadataKey, MetadataValue)
+        DoSetMetadataTest(MetadataKey, MetadataValue, subject, Sub(s)
+                                                                   s.SerializedData.ShouldContain(MetadataKey)
+                                                                   s.SerializedData.ShouldContain(MetadataValue)
+                                                               End Sub)
 
         data.Metadatas.ShouldHaveSingleItem
         data.Metadatas.ShouldContainKeyAndValue(MetadataKey, MetadataValue)
-        subject.SerializedData.ShouldContain(MetadataKey)
-        subject.SerializedData.ShouldContain(MetadataValue)
     End Sub
+
     <Fact>
     Sub retrieve_metadata_when_calling_GetMetadata()
         Const MetadataKey = "key"
