@@ -58,17 +58,11 @@ Public Class WorldShould
     End Sub
     <Fact>
     Sub remove_metadata_after_adding_it_when_calling_RemoveMetadata()
-        Const MetadataKey = "key"
-        Const MetadataValue = "value"
-        Dim data = New WorldData
-        Dim subject As IWorld = World.Create(data)
-        subject.SetMetadata(MetadataKey, MetadataValue)
-
-        subject.RemoveMetadata(MetadataKey)
-
-        subject.HasMetadata(MetadataKey).ShouldBeFalse
-        subject.SerializedData.ShouldNotContain(MetadataKey)
-        subject.SerializedData.ShouldNotContain(MetadataValue)
+        DoRemoveMetadataTest(AddressOf World.Create,
+                             Sub(k, v, d, s)
+                                 s.SerializedData.ShouldNotContain(k)
+                                 s.SerializedData.ShouldNotContain(v)
+                             End Sub)
     End Sub
 End Class
 

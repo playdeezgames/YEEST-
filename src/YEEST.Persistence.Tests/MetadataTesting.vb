@@ -54,4 +54,20 @@ Friend Module MetadataTesting
 
         actual.ShouldBeTrue
     End Sub
+    Friend Sub DoRemoveMetadataTest(Of THolder As IHolder)(
+                                                          instantiator As Func(Of Data.WorldData, THolder),
+                                                          Optional validator As Action(Of String, String, Data.WorldData, THolder) = Nothing)
+        Const MetadataKey = "key"
+        Const MetadataValue = "value"
+        Dim data = New WorldData
+        Dim subject = instantiator(data)
+        subject.SetMetadata(MetadataKey, MetadataValue)
+
+        subject.RemoveMetadata(MetadataKey)
+
+        subject.HasMetadata(MetadataKey).ShouldBeFalse
+        If validator IsNot Nothing Then
+            validator(MetadataKey, MetadataValue, data, subject)
+        End If
+    End Sub
 End Module
