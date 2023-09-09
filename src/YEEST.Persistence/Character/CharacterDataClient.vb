@@ -18,4 +18,9 @@ Public Class CharacterDataClient
             Return CharacterData.Metadatas
         End Get
     End Property
+    Protected Overrides ReadOnly Property FlagSource As HashSet(Of String)
+        Get
+            Return CharacterData.Flags
+        End Get
+    End Property
 End Class

@@ -22,6 +22,14 @@ Public Class LocationShould
         'do nothing
     End Sub
 
+    Protected Overrides Sub ValidateSetFlag(name As String, value As Boolean, data As WorldData, subject As ILocation)
+        If value Then
+            data.Locations(0).Flags.ShouldContain(name)
+        Else
+            data.Locations(0).Flags.ShouldNotContain(name)
+        End If
+    End Sub
+
     Protected Overrides Function CreateSubject(data As WorldData) As ILocation
         Return World.Create(data).CreateLocation
     End Function

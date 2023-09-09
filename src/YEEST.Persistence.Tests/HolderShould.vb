@@ -72,4 +72,17 @@ Public MustInherit Class HolderShould(Of THolder As IHolder)
         subject.HasMetadata(MetadataKey).ShouldBeFalse
         ValidateRemoveMetadata(MetadataKey, MetadataValue, data, subject)
     End Sub
+    <Theory>
+    <InlineData("flag-name", True)>
+    <InlineData("flag-name", False)>
+    Public Sub set_flag_when_calling_SetFlag(flagName As String, flagValue As Boolean)
+        Dim data = New WorldData
+        Dim subject = CreateSubject(data)
+
+        subject.SetFlag(flagName, flagValue)
+
+        ValidateSetFlag(flagName, flagValue, data, subject)
+    End Sub
+
+    Protected MustOverride Sub ValidateSetFlag(name As String, value As Boolean, data As WorldData, subject As THolder)
 End Class

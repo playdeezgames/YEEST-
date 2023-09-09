@@ -54,6 +54,16 @@ Public Class WorldShould
         subject.SerializedData.ShouldNotContain(value)
     End Sub
 
+    Protected Overrides Sub ValidateSetFlag(name As String, value As Boolean, data As WorldData, subject As IWorld)
+        If value Then
+            data.Flags.ShouldContain(name)
+            subject.SerializedData.ShouldContain(name)
+        Else
+            data.Flags.ShouldNotContain(name)
+            subject.SerializedData.ShouldNotContain(name)
+        End If
+    End Sub
+
     Protected Overrides Function CreateSubject(data As WorldData) As IWorld
         Return World.Create(data)
     End Function
