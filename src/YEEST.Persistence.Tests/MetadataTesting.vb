@@ -34,4 +34,13 @@ Friend Module MetadataTesting
 
         Should.Throw(Of KeyNotFoundException)(action)
     End Sub
+    Friend Sub DoHasMetadataNotFoundTest(Of THolder As IHolder)(instantiator As Func(Of Data.WorldData, THolder))
+        Const MetadataKey = "key"
+        Dim data = New WorldData
+        Dim subject = instantiator(data)
+
+        Dim actual = subject.HasMetadata(MetadataKey)
+
+        actual.ShouldBeFalse
+    End Sub
 End Module
