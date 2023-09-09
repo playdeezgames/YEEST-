@@ -84,5 +84,17 @@ Public MustInherit Class HolderShould(Of THolder As IHolder)
         ValidateSetFlag(flagName, flagValue, data, subject)
     End Sub
 
+    <Theory>
+    <InlineData("flag-name", True)>
+    <InlineData("flag-name", False)>
+    Public Sub get_flag_when_calling_GetFlag(flagName As String, flagValue As Boolean)
+        Dim data = New WorldData
+        Dim subject = CreateSubject(data)
+        subject.SetFlag(flagName, flagValue)
+
+        Dim actual As Boolean = subject.GetFlag(flagName)
+
+        actual.shouldbe(flagValue)
+    End Sub
     Protected MustOverride Sub ValidateSetFlag(name As String, value As Boolean, data As WorldData, subject As THolder)
 End Class

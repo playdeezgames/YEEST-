@@ -26,4 +26,8 @@
     Public Function HasMetadata(key As String) As Boolean Implements IMetadataHolder.HasMetadata
         Return MetadataSource.ContainsKey(key)
     End Function
+
+    Public Function GetFlag(flagName As String) As Boolean Implements IFlagHolder.GetFlag
+        Return FlagSource.Contains(flagName)
+    End Function
 End Class
