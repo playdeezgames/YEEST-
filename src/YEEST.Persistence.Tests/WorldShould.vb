@@ -3,6 +3,7 @@ Imports Xunit
 Imports YEEST.Data
 
 Public Class WorldShould
+    Inherits HolderShould(Of IWorld)
     <Fact>
     Sub be_instantiable_when_calling_World__Create()
         Dim data As New WorldData
@@ -30,39 +31,20 @@ Public Class WorldShould
         data.Locations.ShouldHaveSingleItem()
         subject.SerializedData.ShouldBe("{""Locations"":[{""Metadatas"":{}}],""Metadatas"":{}}")
     End Sub
-    <Fact>
-    Sub store_metadata_when_calling_SetMetadata()
-        DoSetMetadataTest(AddressOf World.Create,
-                          Sub(k, v, d, s)
-                              s.SerializedData.ShouldContain(k)
-                              s.SerializedData.ShouldContain(v)
-                              d.Metadatas.ShouldHaveSingleItem
-                              d.Metadatas.ShouldContainKeyAndValue(k, v)
-                          End Sub)
+    Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As IWorld)
+        subject.SerializedData.ShouldContain(key)
+        subject.SerializedData.ShouldContain(value)
+        data.Metadatas.ShouldHaveSingleItem
+        data.Metadatas.ShouldContainKeyAndValue(key, value)
     End Sub
-    <Fact>
-    Sub retrieve_metadata_when_calling_GetMetadata()
-        DoGetMetadataTest(AddressOf World.Create)
+
+    Protected Overrides Sub ValidateRemoveMetadata(key As String, value As String, data As WorldData, subject As IWorld)
+        subject.SerializedData.ShouldNotContain(key)
+        subject.SerializedData.ShouldNotContain(value)
     End Sub
-    <Fact>
-    Sub throw_exception_when_metadata_key_not_found_when_calling_GetMetadata()
-        DoGetMetadataNotFoundTest(AddressOf World.Create)
-    End Sub
-    <Fact>
-    Sub return_false_when_metadata_key_not_found_when_calling_HasMetadata()
-        DoHasMetadataNotFoundTest(AddressOf World.Create)
-    End Sub
-    <Fact>
-    Sub return_true_when_metadata_key_id_found_when_calling_HasMetadata()
-        DoHasMetadataTest(AddressOf World.Create)
-    End Sub
-    <Fact>
-    Sub remove_metadata_after_adding_it_when_calling_RemoveMetadata()
-        DoRemoveMetadataTest(AddressOf World.Create,
-                             Sub(k, v, d, s)
-                                 s.SerializedData.ShouldNotContain(k)
-                                 s.SerializedData.ShouldNotContain(v)
-                             End Sub)
-    End Sub
+
+    Protected Overrides Function CreateSubject(data As WorldData) As IWorld
+        Return World.Create(data)
+    End Function
 End Class
 
