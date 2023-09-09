@@ -43,4 +43,15 @@ Friend Module MetadataTesting
 
         actual.ShouldBeFalse
     End Sub
+    Friend Sub DoHasMetadataTest(Of THolder As IHolder)(instantiator As Func(Of Data.WorldData, THolder))
+        Const MetadataKey = "key"
+        Const MetadataValue = "value"
+        Dim data = New WorldData
+        Dim subject = instantiator(data)
+        subject.SetMetadata(MetadataKey, MetadataValue)
+
+        Dim actual = subject.HasMetadata(MetadataKey)
+
+        actual.ShouldBeTrue
+    End Sub
 End Module

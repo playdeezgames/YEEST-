@@ -54,15 +54,7 @@ Public Class WorldShould
     End Sub
     <Fact>
     Sub return_true_when_metadata_key_id_found_when_calling_HasMetadata()
-        Const MetadataKey = "key"
-        Const MetadataValue = "value"
-        Dim data = New WorldData
-        Dim subject As IWorld = World.Create(data)
-        subject.SetMetadata(MetadataKey, MetadataValue)
-
-        Dim actual = subject.HasMetadata(MetadataKey)
-
-        actual.ShouldBeTrue
+        DoHasMetadataTest(AddressOf World.Create)
     End Sub
     <Fact>
     Sub remove_metadata_after_adding_it_when_calling_RemoveMetadata()
