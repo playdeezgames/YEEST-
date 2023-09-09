@@ -1,5 +1,4 @@
-﻿Imports System.Security.Cryptography.X509Certificates
-Imports Shouldly
+﻿Imports Shouldly
 Imports Xunit
 Imports YEEST.Data
 
@@ -16,15 +15,14 @@ Public Class LocationShould
     End Sub
     <Fact>
     Sub store_metadata_when_calling_SetMetadata()
-        Const MetadataKey = "key"
-        Const MetadataValue = "value"
-        Dim data = New WorldData
-        Dim w As IWorld = World.Create(data)
-        Dim subject = w.CreateLocation
-
-        DoSetMetadataTest(MetadataKey, MetadataValue, subject)
-
-        data.Locations(0).Metadatas.ShouldContainKeyAndValue(MetadataKey, MetadataValue)
+        DoSetMetadataTest(
+            Function(d)
+                Dim w As IWorld = World.Create(d)
+                Return w.CreateLocation
+            End Function,
+            Sub(k, v, d, s)
+                d.Locations(0).Metadatas.ShouldContainKeyAndValue(k, v)
+            End Sub)
     End Sub
     <Fact>
     Sub retrieve_metadata_when_calling_GetMetadata()

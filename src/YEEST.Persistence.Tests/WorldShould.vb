@@ -32,18 +32,15 @@ Public Class WorldShould
     End Sub
     <Fact>
     Sub store_metadata_when_calling_SetMetadata()
-        Const MetadataKey = "key"
-        Const MetadataValue = "value"
-        Dim data = New WorldData
-        Dim subject As IWorld = World.Create(data)
-
-        DoSetMetadataTest(MetadataKey, MetadataValue, subject, Sub(s)
-                                                                   s.SerializedData.ShouldContain(MetadataKey)
-                                                                   s.SerializedData.ShouldContain(MetadataValue)
-                                                               End Sub)
-
-        data.Metadatas.ShouldHaveSingleItem
-        data.Metadatas.ShouldContainKeyAndValue(MetadataKey, MetadataValue)
+        DoSetMetadataTest(Function(d)
+                              Return World.Create(d)
+                          End Function,
+                          Sub(k, v, d, s)
+                              s.SerializedData.ShouldContain(k)
+                              s.SerializedData.ShouldContain(v)
+                              d.Metadatas.ShouldHaveSingleItem
+                              d.Metadatas.ShouldContainKeyAndValue(k, v)
+                          End Sub)
     End Sub
 
     <Fact>
