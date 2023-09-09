@@ -23,4 +23,9 @@ Public Class CharacterDataClient
             Return CharacterData.Flags
         End Get
     End Property
+    Protected Overrides ReadOnly Property StatisticSource As Dictionary(Of String, Integer)
+        Get
+            Return CharacterData.Statistics
+        End Get
+    End Property
 End Class

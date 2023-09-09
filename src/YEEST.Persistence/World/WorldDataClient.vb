@@ -17,4 +17,10 @@ Public Class WorldDataClient
             Return WorldData.Flags
         End Get
     End Property
+
+    Protected Overrides ReadOnly Property StatisticSource As Dictionary(Of String, Integer)
+        Get
+            Return WorldData.Statistics
+        End Get
+    End Property
 End Class

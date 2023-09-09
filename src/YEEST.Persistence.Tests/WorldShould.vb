@@ -64,6 +64,12 @@ Public Class WorldShould
         End If
     End Sub
 
+    Protected Overrides Sub ValidateSetStatistic(statisticName As String, statisticValue As Integer, data As WorldData, subject As IWorld)
+        data.Statistics(statisticName).ShouldBe(statisticValue)
+        subject.SerializedData.ShouldContain(statisticName)
+        subject.SerializedData.ShouldContain(statisticValue.ToString())
+    End Sub
+
     Protected Overrides Function CreateSubject(data As WorldData) As IWorld
         Return World.Create(data)
     End Function

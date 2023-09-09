@@ -23,4 +23,9 @@ Friend Class LocationDataClient
             Return LocationData.Flags
         End Get
     End Property
+    Protected Overrides ReadOnly Property StatisticSource As Dictionary(Of String, Integer)
+        Get
+            Return LocationData.Statistics
+        End Get
+    End Property
 End Class

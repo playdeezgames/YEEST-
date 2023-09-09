@@ -2,6 +2,7 @@
     Implements IHolder
     Protected MustOverride ReadOnly Property MetadataSource As Dictionary(Of String, String)
     Protected MustOverride ReadOnly Property FlagSource As HashSet(Of String)
+    Protected MustOverride ReadOnly Property StatisticSource As Dictionary(Of String, Integer)
 
     Public Sub SetMetadata(key As String, value As String) Implements IMetadataHolder.SetMetadata
         MetadataSource(key) = value
@@ -17,6 +18,10 @@
         Else
             FlagSource.Remove(flagName)
         End If
+    End Sub
+
+    Public Sub SetStatistic(statisticName As String, statisticValue As Integer) Implements IStatisticHolder.SetStatistic
+        StatisticSource(statisticName) = statisticValue
     End Sub
 
     Public Function GetMetadata(key As String) As String Implements IMetadataHolder.GetMetadata

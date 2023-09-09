@@ -20,6 +20,10 @@ Public Class CharacterShould
         End If
     End Sub
 
+    Protected Overrides Sub ValidateSetStatistic(statisticName As String, statisticValue As Integer, data As WorldData, subject As ICharacter)
+        data.Characters(0).Statistics(statisticName).ShouldBe(statisticValue)
+    End Sub
+
     Protected Overrides Function CreateSubject(data As Data.WorldData) As ICharacter
         Return World.Create(data).CreateCharacter()
     End Function

@@ -6,6 +6,8 @@ Public MustInherit Class HolderShould(Of THolder As IHolder)
     Protected MustOverride Function CreateSubject(data As Data.WorldData) As THolder
     Protected MustOverride Sub ValidateSetMetadata(key As String, value As String, data As Data.WorldData, subject As THolder)
     Protected MustOverride Sub ValidateRemoveMetadata(key As String, value As String, data As Data.WorldData, subject As THolder)
+    Protected MustOverride Sub ValidateSetFlag(name As String, value As Boolean, data As WorldData, subject As THolder)
+    Protected MustOverride Sub ValidateSetStatistic(statisticName As String, statisticValue As Integer, data As WorldData, subject As THolder)
     <Fact>
     Public Sub retrieve_metadata_when_calling_GetMetadata()
         Const MetadataKey = "key"
@@ -96,5 +98,15 @@ Public MustInherit Class HolderShould(Of THolder As IHolder)
 
         actual.shouldbe(flagValue)
     End Sub
-    Protected MustOverride Sub ValidateSetFlag(name As String, value As Boolean, data As WorldData, subject As THolder)
+    <Fact>
+    Public Sub set_statistic_when_call_SetStatistic()
+        Const StatisticName = "statistic-name"
+        Const StatisticValue = 69
+        Dim data = New WorldData
+        Dim subject = CreateSubject(data)
+
+        subject.SetStatistic(statisticName, statisticValue)
+
+        ValidateSetStatistic(StatisticName, StatisticValue, data, subject)
+    End Sub
 End Class

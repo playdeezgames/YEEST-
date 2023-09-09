@@ -30,6 +30,10 @@ Public Class LocationShould
         End If
     End Sub
 
+    Protected Overrides Sub ValidateSetStatistic(statisticName As String, statisticValue As Integer, data As WorldData, subject As ILocation)
+        data.Locations(0).Statistics(statisticName).ShouldBe(statisticValue)
+    End Sub
+
     Protected Overrides Function CreateSubject(data As WorldData) As ILocation
         Return World.Create(data).CreateLocation
     End Function
