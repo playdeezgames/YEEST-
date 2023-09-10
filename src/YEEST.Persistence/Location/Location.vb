@@ -18,7 +18,11 @@ Friend Class Location
 
     Public ReadOnly Property Characters As IEnumerable(Of ICharacter) Implements ILocation.Characters
         Get
-            Return Array.Empty(Of ICharacter)
+            Return LocationData.Characters.Select(Function(characterId) New Character(WorldData, characterId))
         End Get
     End Property
+
+    Public Sub AddCharacter(character As ICharacter) Implements ILocation.AddCharacter
+        LocationData.Characters.Add(character.Id)
+    End Sub
 End Class

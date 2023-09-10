@@ -28,6 +28,15 @@ Public Class LocationShould
 
         actual.ShouldBeEmpty
     End Sub
+    <Fact>
+    Sub add_a_character()
+        Dim subject = CreateSubject(New Data.WorldData)
+        Dim character = subject.World.CreateCharacter("character-type")
+
+        subject.AddCharacter(character)
+
+        subject.Characters.ShouldNotBeEmpty
+    End Sub
 
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As ILocation)
         'do nothing
