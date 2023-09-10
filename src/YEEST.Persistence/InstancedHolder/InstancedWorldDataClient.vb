@@ -19,7 +19,7 @@ Friend MustInherit Class InstancedWorldDataClient
         End Get
     End Property
 
-    Public Sub Recycle() Implements IInstancedHolder.Recycle
+    Public Overridable Sub Recycle() Implements IInstancedHolder.Recycle
         SetFlag(IsRecycledFlag, True)
     End Sub
 End Class

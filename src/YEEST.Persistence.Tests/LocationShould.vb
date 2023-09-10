@@ -83,4 +83,15 @@ Public Class LocationShould
         Const locationType = "location-type"
         Return World.Create(data).CreateLocation(locationType)
     End Function
+
+    <Fact>
+    Sub orphan_characters_when_recycled()
+        Dim subject = CreateSubject(New Data.WorldData)
+        Dim character = subject.World.CreateCharacter("character-type")
+        character.Location = subject
+
+        subject.Recycle()
+
+        character.Location.ShouldBeNull
+    End Sub
 End Class

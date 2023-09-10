@@ -33,4 +33,11 @@ Friend Class Location
     Public Function HasCharacter(character As ICharacter) As Boolean Implements ILocation.HasCharacter
         Return LocationData.Characters.Contains(character.Id)
     End Function
+
+    Public Overrides Sub Recycle()
+        For Each character In Characters
+            character.Location = Nothing
+        Next
+        MyBase.Recycle()
+    End Sub
 End Class
