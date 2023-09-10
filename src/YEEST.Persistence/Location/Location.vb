@@ -1,5 +1,4 @@
-﻿Imports System.Diagnostics.CodeAnalysis
-Imports YEEST.Data
+﻿Imports YEEST.Data
 
 Friend Class Location
     Inherits LocationDataClient
