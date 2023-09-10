@@ -43,7 +43,7 @@ Public Class WorldShould
         actual.ShouldNotBeNull()
         actual.CharacterType.ShouldBe("character-type")
         data.Characters.ShouldHaveSingleItem()
-        subject.SerializedData.ShouldBe("{""Locations"":[],""Characters"":[{""Metadatas"":{},""Flags"":[],""Statistics"":{}}],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
+        subject.SerializedData.ShouldBe("{""Locations"":[],""Characters"":[{""Metadatas"":{""CharacterType"":""character-type""},""Flags"":[],""Statistics"":{}}],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
     End Sub
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As IWorld)
         subject.SerializedData.ShouldContain(key)
