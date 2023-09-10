@@ -23,11 +23,15 @@
             Return New Location(WorldData, GetStatistic(LocationIdKey))
         End Get
         Set(value As ILocation)
+            If Location IsNot Nothing Then
+                Location.RemoveCharacter(Me)
+            End If
             If value Is Nothing Then
                 RemoveStatistic(LocationIdKey)
                 Return
             End If
             SetStatistic(LocationIdKey, value.Id)
+            value.AddCharacter(Me)
         End Set
     End Property
 End Class

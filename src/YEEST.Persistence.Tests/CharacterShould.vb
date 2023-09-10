@@ -52,6 +52,8 @@ Public Class CharacterShould
         subject.Location = location
 
         subject.Location.ShouldNotBeNull
+        subject.Location.Characters.ShouldHaveSingleItem
+        subject.Location.HasCharacter(subject).ShouldBeTrue
     End Sub
     <Fact>
     Sub clear_location_with_location_property()
@@ -62,5 +64,6 @@ Public Class CharacterShould
         subject.Location = Nothing
 
         subject.Location.ShouldBeNull
+        location.HasCharacter(subject).ShouldBeFalse
     End Sub
 End Class
