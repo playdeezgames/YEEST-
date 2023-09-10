@@ -44,4 +44,23 @@ Public Class CharacterShould
 
         actual.ShouldBeNull
     End Sub
+    <Fact>
+    Sub set_location_with_location_property()
+        Dim subject = CreateSubject(New Data.WorldData)
+        Dim location = subject.World.CreateLocation("location-type")
+
+        subject.Location = location
+
+        subject.Location.ShouldNotBeNull
+    End Sub
+    <Fact>
+    Sub clear_location_with_location_property()
+        Dim subject = CreateSubject(New Data.WorldData)
+        Dim location = subject.World.CreateLocation("location-type")
+        subject.Location = location
+
+        subject.Location = Nothing
+
+        subject.Location.ShouldBeNull
+    End Sub
 End Class

@@ -3,6 +3,7 @@
     Implements ICharacter
 
     Friend Const CharacterTypeKey As String = "CharacterType"
+    Private Const LocationIdKey As String = "LocationId"
 
     Public Sub New(data As Data.WorldData, characterId As Integer)
         MyBase.New(data, characterId)
@@ -14,9 +15,19 @@
         End Get
     End Property
 
-    Public ReadOnly Property Location As ILocation Implements ICharacter.Location
+    Public Property Location As ILocation Implements ICharacter.Location
         Get
-            Return Nothing
+            If Not HasStatistic(LocationIdKey) Then
+                Return Nothing
+            End If
+            Return New Location(WorldData, GetStatistic(LocationIdKey))
         End Get
+        Set(value As ILocation)
+            If value Is Nothing Then
+                RemoveStatistic(LocationIdKey)
+                Return
+            End If
+            SetStatistic(LocationIdKey, value.Id)
+        End Set
     End Property
 End Class
