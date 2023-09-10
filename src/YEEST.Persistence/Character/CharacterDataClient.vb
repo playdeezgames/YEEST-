@@ -1,7 +1,7 @@
 ﻿Imports YEEST.Data
 
-Public Class CharacterDataClient
-    Inherits WorldDataClient
+Friend Class CharacterDataClient
+    Inherits InstancedWorldDataClient
     Protected ReadOnly CharacterId As Integer
     Protected Sub New(data As WorldData, characterId As Integer)
         MyBase.New(data)

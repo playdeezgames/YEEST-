@@ -1,7 +1,7 @@
 ﻿Imports YEEST.Data
 
 Friend Class LocationDataClient
-    Inherits WorldDataClient
+    Inherits InstancedWorldDataClient
     Protected ReadOnly LocationId As Integer
     Protected Sub New(data As WorldData, locationId As Integer)
         MyBase.New(data)
