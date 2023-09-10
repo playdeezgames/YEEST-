@@ -3,7 +3,7 @@ Imports Xunit
 Imports YEEST.Data
 
 Public Class CharacterShould
-    Inherits HolderShould(Of ICharacter)
+    Inherits InstancedHolderShould(Of ICharacter)
 
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As Data.WorldData, subject As ICharacter)
         'do nothing

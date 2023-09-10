@@ -10,4 +10,10 @@ Friend MustInherit Class InstancedWorldDataClient
     End Sub
 
     Public ReadOnly Property Id As Integer Implements IInstancedHolder.Id
+
+    Public ReadOnly Property World As IWorld Implements IInstancedHolder.World
+        Get
+            Throw New NotImplementedException()
+        End Get
+    End Property
 End Class

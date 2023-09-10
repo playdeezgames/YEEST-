@@ -3,7 +3,7 @@ Imports Xunit
 Imports YEEST.Data
 
 Public Class LocationShould
-    Inherits HolderShould(Of ILocation)
+    Inherits InstancedHolderShould(Of ILocation)
     <Fact>
     Sub have_a_location_id()
         Dim subject = CreateSubject(New Data.WorldData)
