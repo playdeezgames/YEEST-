@@ -20,6 +20,14 @@ Public Class LocationShould
 
         actual.ShouldBe("location-type")
     End Sub
+    <Fact>
+    Sub initially_have_no_characters()
+        Dim subject = CreateSubject(New Data.WorldData)
+
+        Dim actual = subject.Characters
+
+        actual.ShouldBeEmpty
+    End Sub
 
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As ILocation)
         'do nothing
