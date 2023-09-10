@@ -61,6 +61,33 @@ Public Class WorldShould
         actual.Id.ShouldBe(0)
     End Sub
     <Fact>
+    Sub use_recycled_characters_when_available()
+        Const oldCharacterType = "old-character-type"
+        Const metadataKey = "metadata-key"
+        Const metadataValue = "metadata-value"
+        Const statisticKey = "statistic-key"
+        Const statisticValue = 69
+        Const flagName = "flag-name"
+        Const newCharacterType = "new-location-type"
+        Dim data = New WorldData
+        Dim subject As IWorld = World.Create(data)
+        Dim oldLocation = subject.CreateCharacter(oldCharacterType)
+        oldLocation.SetMetadata(metadataKey, metadataValue)
+        oldLocation.SetStatistic(statisticKey, statisticValue)
+        oldLocation.SetFlag(flagName, True)
+        oldLocation.Recycle()
+
+        Dim actual = subject.CreateCharacter(newCharacterType)
+
+        data.Characters.ShouldHaveSingleItem
+        actual.CharacterType.ShouldBe(newCharacterType)
+        actual.HasStatistic(statisticKey).ShouldBeFalse
+        actual.HasMetadata(metadataKey).ShouldBeFalse
+        actual.GetFlag(flagName).ShouldBeFalse
+        actual.GetFlag("IsRecycled").ShouldBeFalse
+        actual.Id.ShouldBe(0)
+    End Sub
+    <Fact>
     Sub create_character_when_calling_CreateCharacter()
         Dim data = New WorldData
         Dim subject As IWorld = World.Create(data)

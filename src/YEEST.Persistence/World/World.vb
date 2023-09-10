@@ -32,8 +32,13 @@ Public Class World
     End Function
 
     Public Function CreateCharacter(characterType As String) As ICharacter Implements IWorld.CreateCharacter
-        Dim characterId = WorldData.Characters.Count
-        WorldData.Characters.Add(New CharacterData())
+        Dim characterId = WorldData.Characters.FindIndex(Function(x) x.Flags.Contains(InstancedWorldDataClient.IsRecycledFlag))
+        If characterId < 0 Then
+            characterId = WorldData.Characters.Count
+            WorldData.Characters.Add(New CharacterData())
+        Else
+            WorldData.Characters(characterId) = New CharacterData
+        End If
         Dim result As New Character(WorldData, characterId)
         result.SetMetadata(Character.CharacterTypeKey, characterType)
         Return result
