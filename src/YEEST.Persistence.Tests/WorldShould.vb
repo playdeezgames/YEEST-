@@ -1,3 +1,4 @@
+Imports System.ComponentModel.DataAnnotations
 Imports Shouldly
 Imports Xunit
 Imports YEEST.Data
@@ -31,6 +32,33 @@ Public Class WorldShould
         actual.ShouldNotBeNull()
         data.Locations.ShouldHaveSingleItem()
         subject.SerializedData.ShouldBe("{""Locations"":[{""Characters"":[],""Metadatas"":{""LocationType"":""location-type""},""Flags"":[],""Statistics"":{}}],""Characters"":[],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
+    End Sub
+    <Fact>
+    Sub use_recycled_locations_when_available()
+        Const oldLocationType = "old-location-type"
+        Const metadataKey = "metadata-key"
+        Const metadataValue = "metadata-value"
+        Const statisticKey = "statistic-key"
+        Const statisticValue = 69
+        Const flagName = "flag-name"
+        Const newLocationType = "new-location-type"
+        Dim data = New WorldData
+        Dim subject As IWorld = World.Create(data)
+        Dim oldLocation = subject.CreateLocation(oldLocationType)
+        oldLocation.SetMetadata(metadataKey, metadataValue)
+        oldLocation.SetStatistic(statisticKey, statisticValue)
+        oldLocation.SetFlag(flagName, True)
+        oldLocation.Recycle()
+
+        Dim actual = subject.CreateLocation(newLocationType)
+
+        data.Locations.ShouldHaveSingleItem
+        actual.LocationType.ShouldBe(newLocationType)
+        actual.HasStatistic(statisticKey).ShouldBeFalse
+        actual.HasMetadata(metadataKey).ShouldBeFalse
+        actual.GetFlag(flagName).ShouldBeFalse
+        actual.GetFlag("IsRecycled").ShouldBeFalse
+        actual.Id.ShouldBe(0)
     End Sub
     <Fact>
     Sub create_character_when_calling_CreateCharacter()

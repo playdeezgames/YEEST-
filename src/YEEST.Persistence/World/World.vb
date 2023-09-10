@@ -19,8 +19,13 @@ Public Class World
     End Function
 
     Public Function CreateLocation(locationType As String) As ILocation Implements IWorld.CreateLocation
-        Dim locationId = WorldData.Locations.Count
-        WorldData.Locations.Add(New LocationData())
+        Dim locationId = WorldData.Locations.FindIndex(Function(x) x.Flags.Contains(InstancedWorldDataClient.IsRecycledFlag))
+        If locationId < 0 Then
+            locationId = WorldData.Locations.Count
+            WorldData.Locations.Add(New LocationData())
+        Else
+            WorldData.Locations(locationId) = New LocationData
+        End If
         Dim result = New Location(WorldData, locationId)
         result.SetMetadata(Location.LocationTypeKey, locationType)
         Return result
@@ -29,7 +34,7 @@ Public Class World
     Public Function CreateCharacter(characterType As String) As ICharacter Implements IWorld.CreateCharacter
         Dim characterId = WorldData.Characters.Count
         WorldData.Characters.Add(New CharacterData())
-        Dim result As Character = New Character(WorldData, characterId)
+        Dim result As New Character(WorldData, characterId)
         result.SetMetadata(Character.CharacterTypeKey, characterType)
         Return result
     End Function
