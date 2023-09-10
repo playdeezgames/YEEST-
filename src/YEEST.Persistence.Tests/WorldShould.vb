@@ -30,7 +30,7 @@ Public Class WorldShould
 
         actual.ShouldNotBeNull()
         data.Locations.ShouldHaveSingleItem()
-        subject.SerializedData.ShouldBe("{""Locations"":[{""Metadatas"":{},""Flags"":[],""Statistics"":{}}],""Characters"":[],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
+        subject.SerializedData.ShouldBe("{""Locations"":[{""Metadatas"":{""LocationType"":""location-type""},""Flags"":[],""Statistics"":{}}],""Characters"":[],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
     End Sub
     <Fact>
     Sub create_character_when_calling_CreateCharacter()
