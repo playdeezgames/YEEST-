@@ -37,7 +37,7 @@
     End Function
 
     Public Function GetStatistic(statisticName As String, Optional defaultValue As Integer = 0) As Integer Implements IStatisticHolder.GetStatistic
-        Return If(StatisticSource.ContainsKey(statisticName), StatisticSource(statisticName), defaultValue)
+        Return If(HasStatistic(statisticName), StatisticSource(statisticName), defaultValue)
     End Function
 
     Public Function HasStatistic(statisticName As String) As Boolean Implements IStatisticHolder.HasStatistic
