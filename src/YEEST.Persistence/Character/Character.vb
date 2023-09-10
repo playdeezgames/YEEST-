@@ -13,4 +13,10 @@
             Return GetMetadata(CharacterTypeKey)
         End Get
     End Property
+
+    Public ReadOnly Property Location As ILocation Implements ICharacter.Location
+        Get
+            Return Nothing
+        End Get
+    End Property
 End Class

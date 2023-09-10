@@ -36,4 +36,12 @@ Public Class CharacterShould
 
         actual.ShouldBe(0)
     End Sub
+    <Fact>
+    Sub have_initial_location_of_nothing()
+        Dim subject = CreateSubject(New Data.WorldData)
+
+        Dim actual = subject.Location
+
+        actual.ShouldBeNull
+    End Sub
 End Class
