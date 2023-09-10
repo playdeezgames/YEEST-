@@ -12,6 +12,14 @@ Public Class LocationShould
 
         actual.ShouldBe(0)
     End Sub
+    <Fact>
+    Sub initially_have_null_location_type()
+        Dim subject = CreateSubject(New Data.WorldData)
+
+        Dim actual = subject.LocationType
+
+        actual.ShouldBeNull
+    End Sub
 
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As ILocation)
         'do nothing
