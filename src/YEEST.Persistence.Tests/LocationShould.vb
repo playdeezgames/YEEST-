@@ -38,6 +38,15 @@ Public Class LocationShould
         subject.Characters.ShouldHaveSingleItem
     End Sub
     <Fact>
+    Sub determine_that_a_character_is_not_present()
+        Dim subject = CreateSubject(New Data.WorldData)
+        Dim character = subject.World.CreateCharacter("character-type")
+
+        Dim actual = subject.HasCharacter(character)
+
+        actual.ShouldBeFalse
+    End Sub
+    <Fact>
     Sub remove_a_character()
         Dim subject = CreateSubject(New Data.WorldData)
         Dim character = subject.World.CreateCharacter("character-type")

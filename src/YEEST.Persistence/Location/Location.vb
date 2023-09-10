@@ -29,4 +29,8 @@ Friend Class Location
     Public Sub RemoveCharacter(character As ICharacter) Implements ILocation.RemoveCharacter
         LocationData.Characters.Remove(character.Id)
     End Sub
+
+    Public Function HasCharacter(character As ICharacter) As Boolean Implements ILocation.HasCharacter
+        Return False
+    End Function
 End Class
