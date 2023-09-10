@@ -155,4 +155,16 @@ Public MustInherit Class HolderShould(Of THolder As IHolder)
 
         actual.ShouldBeTrue
     End Sub
+    <Fact>
+    Public Sub remove_statistic_when_calling_RemoveStatistic()
+        Const StatisticName = "statistic-name"
+        Const StatisticValue = 69
+        Dim data = New WorldData
+        Dim subject = CreateSubject(data)
+        subject.SetStatistic(StatisticName, StatisticValue)
+
+        subject.RemoveStatistic(StatisticName)
+
+        subject.HasStatistic(StatisticName).ShouldBeFalse
+    End Sub
 End Class

@@ -24,6 +24,10 @@
         StatisticSource(statisticName) = statisticValue
     End Sub
 
+    Public Sub RemoveStatistic(statisticName As String) Implements IStatisticHolder.RemoveStatistic
+        StatisticSource.Remove(statisticName)
+    End Sub
+
     Public Function GetMetadata(key As String) As String Implements IMetadataHolder.GetMetadata
         Return MetadataSource(key)
     End Function
