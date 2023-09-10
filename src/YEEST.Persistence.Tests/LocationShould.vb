@@ -6,12 +6,11 @@ Public Class LocationShould
     Inherits HolderShould(Of ILocation)
     <Fact>
     Sub have_a_location_id()
-        Dim w = World.Create(New Data.WorldData)
+        Dim subject = CreateSubject(New Data.WorldData)
 
-        Dim subject = w.CreateLocation()
+        Dim actual = subject.Id
 
-        subject.ShouldNotBeNull
-        subject.Id.ShouldBe(0)
+        actual.ShouldBe(0)
     End Sub
 
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As ILocation)
