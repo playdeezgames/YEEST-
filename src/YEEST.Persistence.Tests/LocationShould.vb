@@ -35,7 +35,7 @@ Public Class LocationShould
 
         subject.AddCharacter(character)
 
-        subject.Characters.ShouldNotBeEmpty
+        subject.Characters.ShouldHaveSingleItem
     End Sub
 
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As ILocation)
