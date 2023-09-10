@@ -1,4 +1,5 @@
 ﻿Imports Shouldly
+Imports Xunit
 Imports YEEST.Data
 
 Public Class CharacterShould
@@ -27,4 +28,12 @@ Public Class CharacterShould
     Protected Overrides Function CreateSubject(data As Data.WorldData) As ICharacter
         Return World.Create(data).CreateCharacter()
     End Function
+    <Fact>
+    Sub have_a_character_id()
+        Dim subject = CreateSubject(New Data.WorldData)
+
+        Dim actual = subject.Id
+
+        actual.ShouldBe(0)
+    End Sub
 End Class
