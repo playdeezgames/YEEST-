@@ -7,6 +7,13 @@ Friend Class LocationDataClient
         MyBase.New(data)
         Me.LocationId = locationId
     End Sub
+
+    Public Overrides ReadOnly Property Id As Integer
+        Get
+            Return LocationId
+        End Get
+    End Property
+
     Protected ReadOnly Property LocationData As LocationData
         Get
             Return WorldData.Locations(LocationId)

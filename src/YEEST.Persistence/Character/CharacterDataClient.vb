@@ -7,6 +7,13 @@ Friend Class CharacterDataClient
         MyBase.New(data)
         Me.CharacterId = characterId
     End Sub
+
+    Public Overrides ReadOnly Property Id As Integer
+        Get
+            Return CharacterId
+        End Get
+    End Property
+
     Protected ReadOnly Property CharacterData As CharacterData
         Get
             Return WorldData.Characters(CharacterId)
