@@ -120,4 +120,14 @@ Public MustInherit Class HolderShould(Of THolder As IHolder)
 
         actual.ShouldBe(DefaultValue)
     End Sub
+    <Fact>
+    Public Sub determine_if_statistic_present_when_calling_HasStatistic()
+        Const StatisticName = "statistic-name"
+        Dim data = New WorldData
+        Dim subject = CreateSubject(data)
+
+        Dim actual = subject.HasStatistic(StatisticName)
+
+        actual.ShouldBeFalse
+    End Sub
 End Class
