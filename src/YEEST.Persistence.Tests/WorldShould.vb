@@ -24,8 +24,9 @@ Public Class WorldShould
     Sub create_location_when_calling_CreateLocation()
         Dim data = New WorldData
         Dim subject As IWorld = World.Create(data)
+        Const locationType = "location-type"
 
-        Dim actual = subject.CreateLocation()
+        Dim actual = subject.CreateLocation(locationType)
 
         actual.ShouldNotBeNull()
         data.Locations.ShouldHaveSingleItem()

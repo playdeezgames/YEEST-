@@ -18,7 +18,7 @@ Public Class World
         Return New World(data)
     End Function
 
-    Public Function CreateLocation() As ILocation Implements IWorld.CreateLocation
+    Public Function CreateLocation(locationType As String) As ILocation Implements IWorld.CreateLocation
         Dim locationId = WorldData.Locations.Count
         WorldData.Locations.Add(New LocationData())
         Return New Location(WorldData, locationId)

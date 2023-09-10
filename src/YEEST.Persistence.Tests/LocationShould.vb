@@ -42,6 +42,7 @@ Public Class LocationShould
     End Sub
 
     Protected Overrides Function CreateSubject(data As WorldData) As ILocation
-        Return World.Create(data).CreateLocation
+        Const locationType = "location-type"
+        Return World.Create(data).CreateLocation(locationType)
     End Function
 End Class
