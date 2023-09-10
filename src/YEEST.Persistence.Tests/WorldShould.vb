@@ -36,8 +36,9 @@ Public Class WorldShould
     Sub create_character_when_calling_CreateCharacter()
         Dim data = New WorldData
         Dim subject As IWorld = World.Create(data)
+        Const characterType = "character-type"
 
-        Dim actual As ICharacter = subject.CreateCharacter()
+        Dim actual As ICharacter = subject.CreateCharacter(characterType)
 
         actual.ShouldNotBeNull()
         actual.CharacterType.ShouldBe("character-type")

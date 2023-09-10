@@ -2,5 +2,5 @@
     Inherits IHolder
     ReadOnly Property SerializedData As String
     Function CreateLocation(locationType As String) As ILocation
-    Function CreateCharacter() As ICharacter
+    Function CreateCharacter(characterType As String) As ICharacter
 End Interface

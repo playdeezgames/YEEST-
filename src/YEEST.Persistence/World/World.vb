@@ -26,7 +26,7 @@ Public Class World
         Return result
     End Function
 
-    Public Function CreateCharacter() As ICharacter Implements IWorld.CreateCharacter
+    Public Function CreateCharacter(characterType As String) As ICharacter Implements IWorld.CreateCharacter
         Dim characterId = WorldData.Characters.Count
         WorldData.Characters.Add(New CharacterData())
         Return New Character(WorldData, characterId)

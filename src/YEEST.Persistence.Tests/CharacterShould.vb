@@ -26,7 +26,7 @@ Public Class CharacterShould
     End Sub
 
     Protected Overrides Function CreateSubject(data As Data.WorldData) As ICharacter
-        Return World.Create(data).CreateCharacter()
+        Return World.Create(data).CreateCharacter("character-type")
     End Function
     <Fact>
     Sub have_a_character_id()
