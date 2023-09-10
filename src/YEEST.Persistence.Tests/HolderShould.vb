@@ -121,7 +121,20 @@ Public MustInherit Class HolderShould(Of THolder As IHolder)
         actual.ShouldBe(DefaultValue)
     End Sub
     <Fact>
-    Public Sub determine_if_statistic_present_when_calling_HasStatistic()
+    Public Sub get_stored_value_when_calling_GetStatistic()
+        Const StatisticName = "statistic-name"
+        Const StatisticValue = 69
+        Const DefaultValue = 999
+        Dim data = New WorldData
+        Dim subject = CreateSubject(data)
+        subject.SetStatistic(StatisticName, StatisticValue)
+
+        Dim actual = subject.GetStatistic(StatisticName, DefaultValue)
+
+        actual.ShouldBe(StatisticValue)
+    End Sub
+    <Fact>
+    Public Sub determine_absent_statistic_not_present_when_calling_HasStatistic()
         Const StatisticName = "statistic-name"
         Dim data = New WorldData
         Dim subject = CreateSubject(data)
@@ -129,5 +142,17 @@ Public MustInherit Class HolderShould(Of THolder As IHolder)
         Dim actual = subject.HasStatistic(StatisticName)
 
         actual.ShouldBeFalse
+    End Sub
+    <Fact>
+    Public Sub determine_present_statistic_is_present_when_calling_HasStatistic()
+        Const StatisticName = "statistic-name"
+        Const StatisticValue = 69
+        Dim data = New WorldData
+        Dim subject = CreateSubject(data)
+        subject.SetStatistic(StatisticName, StatisticValue)
+
+        Dim actual = subject.HasStatistic(StatisticName)
+
+        actual.ShouldBeTrue
     End Sub
 End Class
