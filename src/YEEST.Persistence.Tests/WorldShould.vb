@@ -40,6 +40,7 @@ Public Class WorldShould
         Dim actual As ICharacter = subject.CreateCharacter()
 
         actual.ShouldNotBeNull()
+        actual.CharacterType.ShouldBe("character-type")
         data.Characters.ShouldHaveSingleItem()
         subject.SerializedData.ShouldBe("{""Locations"":[],""Characters"":[{""Metadatas"":{},""Flags"":[],""Statistics"":{}}],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
     End Sub
