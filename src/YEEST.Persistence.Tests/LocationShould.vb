@@ -37,6 +37,16 @@ Public Class LocationShould
 
         subject.Characters.ShouldHaveSingleItem
     End Sub
+    <Fact>
+    Sub remove_a_character()
+        Dim subject = CreateSubject(New Data.WorldData)
+        Dim character = subject.World.CreateCharacter("character-type")
+        subject.AddCharacter(character)
+
+        subject.RemoveCharacter(character)
+
+        subject.Characters.ShouldBeEmpty
+    End Sub
 
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As ILocation)
         'do nothing
