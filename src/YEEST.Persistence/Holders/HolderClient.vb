@@ -35,4 +35,8 @@
     Public Function GetFlag(flagName As String) As Boolean Implements IFlagHolder.GetFlag
         Return FlagSource.Contains(flagName)
     End Function
+
+    Public Function GetStatistic(statisticName As String, Optional defaultValue As Integer = 0) As Integer Implements IStatisticHolder.GetStatistic
+        Return If(StatisticSource.ContainsKey(statisticName), StatisticSource(statisticName), defaultValue)
+    End Function
 End Class

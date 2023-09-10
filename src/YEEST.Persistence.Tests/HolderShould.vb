@@ -99,14 +99,25 @@ Public MustInherit Class HolderShould(Of THolder As IHolder)
         actual.shouldbe(flagValue)
     End Sub
     <Fact>
-    Public Sub set_statistic_when_call_SetStatistic()
+    Public Sub set_statistic_when_calling_SetStatistic()
         Const StatisticName = "statistic-name"
         Const StatisticValue = 69
         Dim data = New WorldData
         Dim subject = CreateSubject(data)
 
-        subject.SetStatistic(statisticName, statisticValue)
+        subject.SetStatistic(StatisticName, StatisticValue)
 
         ValidateSetStatistic(StatisticName, StatisticValue, data, subject)
+    End Sub
+    <Fact>
+    Public Sub get_default_value_when_calling_GetStatistic()
+        Const StatisticName = "statistic-name"
+        Const DefaultValue = 999
+        Dim data = New WorldData
+        Dim subject = CreateSubject(data)
+
+        Dim actual = subject.GetStatistic(StatisticName, DefaultValue)
+
+        actual.ShouldBe(DefaultValue)
     End Sub
 End Class
