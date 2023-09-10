@@ -13,7 +13,7 @@ Friend MustInherit Class InstancedWorldDataClient
 
     Public ReadOnly Property World As IWorld Implements IInstancedHolder.World
         Get
-            Throw New NotImplementedException()
+            Return Persistence.World.Create(WorldData)
         End Get
     End Property
 End Class
