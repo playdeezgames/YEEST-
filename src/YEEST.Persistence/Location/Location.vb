@@ -1,4 +1,5 @@
-﻿Imports YEEST.Data
+﻿Imports System.Diagnostics.CodeAnalysis
+Imports YEEST.Data
 
 Friend Class Location
     Inherits LocationDataClient
@@ -31,6 +32,6 @@ Friend Class Location
     End Sub
 
     Public Function HasCharacter(character As ICharacter) As Boolean Implements ILocation.HasCharacter
-        Return False
+        Return LocationData.Characters.Contains(character.Id)
     End Function
 End Class

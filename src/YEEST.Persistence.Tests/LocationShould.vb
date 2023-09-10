@@ -35,6 +35,7 @@ Public Class LocationShould
 
         subject.AddCharacter(character)
 
+        subject.HasCharacter(character).ShouldBeTrue
         subject.Characters.ShouldHaveSingleItem
     End Sub
     <Fact>
@@ -54,6 +55,7 @@ Public Class LocationShould
 
         subject.RemoveCharacter(character)
 
+        subject.HasCharacter(character).ShouldBeFalse
         subject.Characters.ShouldBeEmpty
     End Sub
 
