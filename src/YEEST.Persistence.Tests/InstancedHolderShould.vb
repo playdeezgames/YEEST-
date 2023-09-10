@@ -12,4 +12,13 @@ Public MustInherit Class InstancedHolderShould(Of THolder As IInstancedHolder)
 
         actual.ShouldNotBeNull
     End Sub
+    <Fact>
+    Sub set_IsRecycled_flag_when_calling_Recycle()
+        Dim data As New Data.WorldData
+        Dim subject = CreateSubject(data)
+
+        subject.Recycle()
+
+        subject.GetFlag("IsRecycled").ShouldBeTrue
+    End Sub
 End Class
