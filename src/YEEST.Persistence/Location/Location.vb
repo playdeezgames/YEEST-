@@ -6,10 +6,4 @@ Friend Class Location
     Sub New(data As WorldData, locationId As Integer)
         MyBase.New(data, locationId)
     End Sub
-
-    Public Overrides ReadOnly Property Id As Integer Implements ILocation.Id
-        Get
-            Return LocationId
-        End Get
-    End Property
 End Class

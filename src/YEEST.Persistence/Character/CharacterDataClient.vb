@@ -2,21 +2,13 @@
 
 Friend Class CharacterDataClient
     Inherits InstancedWorldDataClient
-    Protected ReadOnly CharacterId As Integer
     Protected Sub New(data As WorldData, characterId As Integer)
-        MyBase.New(data)
-        Me.CharacterId = characterId
+        MyBase.New(data, characterId)
     End Sub
-
-    Public Overrides ReadOnly Property Id As Integer
-        Get
-            Return CharacterId
-        End Get
-    End Property
 
     Protected ReadOnly Property CharacterData As CharacterData
         Get
-            Return WorldData.Characters(CharacterId)
+            Return WorldData.Characters(Id)
         End Get
     End Property
 

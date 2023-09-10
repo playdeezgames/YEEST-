@@ -2,21 +2,13 @@
 
 Friend Class LocationDataClient
     Inherits InstancedWorldDataClient
-    Protected ReadOnly LocationId As Integer
     Protected Sub New(data As WorldData, locationId As Integer)
-        MyBase.New(data)
-        Me.LocationId = locationId
+        MyBase.New(data, locationId)
     End Sub
-
-    Public Overrides ReadOnly Property Id As Integer
-        Get
-            Return LocationId
-        End Get
-    End Property
 
     Protected ReadOnly Property LocationData As LocationData
         Get
-            Return WorldData.Locations(LocationId)
+            Return WorldData.Locations(Id)
         End Get
     End Property
 
