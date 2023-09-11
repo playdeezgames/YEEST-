@@ -11,11 +11,12 @@ Public Class Host
     Private ReadOnly outputter As Action(Of String)
     Private ReadOnly inputter As Func(Of String)
     Private ReadOnly handlerStack As New Stack(Of String)
-    Private ReadOnly commandHandlers As New Dictionary(Of String, Action(Of Queue(Of String), Stack(Of String), IEnumerable(Of String))) From
+    Private ReadOnly legacyCommandHandlers As New Dictionary(Of String, Action(Of Queue(Of String), Stack(Of String), IEnumerable(Of String))) From
         {
             {TitleState, AddressOf HandleTitleCommand},
             {ConfirmQuitState, AddressOf HandleConfirmQuitCommand}
         }
+    Private ReadOnly commandHandlers As New Dictionary(Of String, ICommandHandler)
 
     Private Sub HandleConfirmQuitCommand(queue As Queue(Of String), stack As Stack(Of String), tokens As IEnumerable(Of String))
         If Not tokens.Any Then
@@ -46,7 +47,7 @@ Public Class Host
     Public Sub Run() Implements IHost.Run
         Do
             OutputMessages()
-            commandHandlers(handlerStack.Peek()).Invoke(messages, handlerStack, ReadInput())
+            legacyCommandHandlers(handlerStack.Peek()).Invoke(messages, handlerStack, ReadInput())
         Loop While handlerStack.Any
     End Sub
 
