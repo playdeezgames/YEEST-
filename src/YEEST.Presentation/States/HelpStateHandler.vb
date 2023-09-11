@@ -1,5 +1,6 @@
-﻿Friend Class ConfirmQuitStateHandler
+﻿Friend Class HelpStateHandler
     Inherits CommandHandler
+
     Public Sub New(messages As Queue(Of String), stateStack As Stack(Of String))
         MyBase.New(messages, stateStack)
     End Sub
@@ -12,22 +13,26 @@
 
     Public Overrides ReadOnly Property DefaultCommand As String
         Get
-            Return NoText
+            Return ExitText
         End Get
     End Property
 
     Public Overrides Sub Update()
-        AddMessage("[red]Are you sure you want to quit?[/]")
+        AddMessage("[blue]Help:[/]")
+        AddMessage("[teal]help[/]: brings up help(you are here)")
+        AddMessage("[teal]quit[/]: quits the game")
     End Sub
+
     Protected Overrides Sub OnInvalidCommand()
-        AddMessage("Please enter 'yes' or 'no'!")
+        AddMessage(InvalidCommandMessage)
     End Sub
+
     Protected Overrides Sub ParseCommand(tokens As IEnumerable(Of String))
         Select Case tokens.First
-            Case YesText
-                PopAllStates()
-            Case NoText
+            Case ExitText
                 PopState()
+            Case Else
+                OnInvalidCommand()
         End Select
     End Sub
 End Class

@@ -6,7 +6,7 @@
 
     Public Overrides ReadOnly Property Prompt As String
         Get
-            Return "[white]>[/]"
+            Return DefaultPrompt
         End Get
     End Property
 
@@ -20,11 +20,13 @@
     End Sub
 
     Protected Overrides Sub OnInvalidCommand()
-        AddMessage("[red]Invalid Command![/]")
+        AddMessage(InvalidCommandMessage)
     End Sub
 
     Protected Overrides Sub ParseCommand(tokens As IEnumerable(Of String))
         Select Case tokens.First
+            Case HelpText
+                PushState(HelpState)
             Case QuitText
                 PushState(ConfirmQuitState)
             Case Else

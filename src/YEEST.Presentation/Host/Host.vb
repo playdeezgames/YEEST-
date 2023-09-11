@@ -10,6 +10,7 @@ Public Class Host
         Me.inputter = inputter
         commandHandlers.Add(TitleState, New TitleStateHandler(messages, handlerStack))
         commandHandlers.Add(ConfirmQuitState, New ConfirmQuitStateHandler(messages, handlerStack))
+        commandHandlers.Add(HelpState, New HelpStateHandler(messages, handlerStack))
         handlerStack.Push(TitleState)
     End Sub
     Private ReadOnly Property CurrentCommandHandler As ICommandHandler
