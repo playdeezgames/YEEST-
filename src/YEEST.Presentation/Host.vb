@@ -8,7 +8,7 @@ Public Class Host
     End Sub
 
     Public Sub Run() Implements IHost.Run
-        outputter("YEEST!!")
+        outputter("[fuchsia]YEEST!![/]")
         inputter()
     End Sub
 End Class
