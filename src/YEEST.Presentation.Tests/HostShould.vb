@@ -6,6 +6,7 @@ Namespace YEEST.Presentation.Tests
         <Theory>
         <InlineData(2, "quit", "yes")>
         <InlineData(4, "quit", "no", "quit", "yes")>
+        <InlineData(6, "help", "exit", "quit", "yes")>
         Sub run(outputCount As Integer, ParamArray commands() As String)
             Dim output As New List(Of String)
             Dim input As New Queue(Of String)
