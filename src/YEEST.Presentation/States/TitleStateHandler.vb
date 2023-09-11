@@ -16,7 +16,8 @@
         End Get
     End Property
     Public Overrides Sub Update()
-        AddMessage("[fuchsia]YEEST!![/]")
+        AddMessage("[fuchsia]YEEST!![/] Main Menu")
+        AddMessage("Commands: quit, *help")
     End Sub
 
     Protected Overrides Sub OnInvalidCommand()

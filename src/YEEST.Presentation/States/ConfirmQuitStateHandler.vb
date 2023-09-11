@@ -18,6 +18,7 @@
 
     Public Overrides Sub Update()
         AddMessage("[red]Are you sure you want to quit?[/]")
+        AddMessage("Commands: yes, *no")
     End Sub
     Protected Overrides Sub OnInvalidCommand()
         AddMessage("Please enter 'yes' or 'no'!")

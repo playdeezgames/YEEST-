@@ -18,7 +18,8 @@
     End Property
 
     Public Overrides Sub Update()
-        AddMessage("[blue]Help:[/]")
+        AddMessage("[blue]Help Menu:[/]")
+        AddMessage("Commands: *exit")
         AddMessage("[teal]help[/]: brings up help(you are here)")
         AddMessage("[teal]quit[/]: quits the game")
     End Sub
