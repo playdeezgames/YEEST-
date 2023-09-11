@@ -9,7 +9,7 @@ Namespace YEEST.Presentation.Tests
             Dim input As New Queue(Of String)
             input.Enqueue("quit")
             input.Enqueue("yes")
-            Dim subject As IHost = New Host(AddressOf output.Add, AddressOf input.Dequeue)
+            Dim subject As IHost = New Host(AddressOf output.Add, Function(p, d) input.Dequeue)
 
             Dim action = Sub() subject.Run()
 

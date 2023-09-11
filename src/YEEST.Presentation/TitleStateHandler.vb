@@ -3,6 +3,18 @@
     Public Sub New(messages As Queue(Of String), stateStack As Stack(Of String))
         MyBase.New(messages, stateStack)
     End Sub
+
+    Public Overrides ReadOnly Property Prompt As String
+        Get
+            Return "[white]>[/]"
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property DefaultCommand As String
+        Get
+            Return HelpText
+        End Get
+    End Property
     Public Overrides Sub Update()
         AddMessage("[fuchsia]YEEST!![/]")
     End Sub
