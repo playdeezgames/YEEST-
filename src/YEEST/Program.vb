@@ -1,5 +1,8 @@
+Imports System.Net
+
 Module Program
     Sub Main(args As String())
-        Console.WriteLine("YEEST!!")
+        Dim host As IHost = New Host()
+        host.Run()
     End Sub
 End Module
