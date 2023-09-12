@@ -18,6 +18,7 @@
     End Property
 
     Public Overrides Sub Update()
+        AddMessage(String.Empty)
         AddMessage("[green]Save As?[/]")
     End Sub
 

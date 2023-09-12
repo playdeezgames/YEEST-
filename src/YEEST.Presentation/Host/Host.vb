@@ -16,6 +16,7 @@ Public Class Host
         commandHandlers.Add(SaveState, New SaveStateHandler(model, messages, handlerStack))
         commandHandlers.Add(InPlayState, New InPlayStateHandler(model, messages, handlerStack))
         commandHandlers.Add(ConfirmAbandonState, New ConfirmAbandonStateHandler(model, messages, handlerStack))
+        commandHandlers.Add(LoadState, New LoadStateHandler(model, messages, handlerStack))
         handlerStack.Push(TitleState)
     End Sub
     Private ReadOnly Property CurrentCommandHandler As ICommandHandler

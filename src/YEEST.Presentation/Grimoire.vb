@@ -1,4 +1,4 @@
-﻿Friend Module Constants
+﻿Friend Module Grimoire
     Friend Const InvalidCommandMessage = "[red]Invalid Command![/]"
 
     Friend Const DefaultPrompt = "[white]>[/]"
@@ -7,6 +7,7 @@
     Friend Const ConfirmQuitState = "ConfirmQuit"
     Friend Const HelpState = "Help"
     Friend Const InPlayState = "InPlay"
+    Friend Const LoadState = "Load"
     Friend Const SaveState = "Save"
     Friend Const TitleState = "Title"
 
@@ -14,6 +15,7 @@
     Friend Const ContinueText = "continue"
     Friend Const HelpText = "help"
     Friend Const GameText = "game"
+    Friend Const LoadText = "load"
     Friend Const NoText = "no"
     Friend Const QuitText = "quit"
     Friend Const SaveText = "save"

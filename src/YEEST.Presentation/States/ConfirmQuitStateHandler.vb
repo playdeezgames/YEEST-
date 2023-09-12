@@ -17,6 +17,7 @@
     End Property
 
     Public Overrides Sub Update()
+        AddMessage(String.Empty)
         AddMessage("[red]Are you sure you want to quit?[/]")
     End Sub
     Protected Overrides Sub OnInvalidCommand()

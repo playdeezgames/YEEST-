@@ -16,6 +16,7 @@
         End Get
     End Property
     Public Overrides Sub Update()
+        AddMessage(String.Empty)
         AddMessage("[fuchsia]YEEST!![/] Main Menu")
         If model.Exists Then
             AddMessage("(there is a game in session)")
@@ -60,6 +61,12 @@
                     PushState(ConfirmAbandonstate)
                 Else
                     AddMessage("There is no game in session.")
+                End If
+            Case LoadText
+                If model.Exists Then
+                    AddMessage($"Game is in session. You have to '{AbandonText}' first.")
+                Else
+                    PushState(LoadState)
                 End If
             Case Else
                 OnInvalidCommand()

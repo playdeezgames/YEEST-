@@ -14,6 +14,7 @@
         End Get
     End Property
     Public Overrides Sub Update()
+        AddMessage(String.Empty)
         AddMessage("[red]Are you sure you want to abandon the current session?[/]")
     End Sub
     Protected Overrides Sub OnInvalidCommand()

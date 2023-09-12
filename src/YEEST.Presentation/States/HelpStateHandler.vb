@@ -51,6 +51,10 @@
             {
                 StatusText,
                 "Shows the current in-game status."
+            },
+            {
+                LoadText,
+                "Loads a session from file."
             }
         }
 
@@ -66,7 +70,8 @@
                     StartText,
                     HelpText,
                     QuitText,
-                    SaveText
+                    SaveText,
+                    LoadText
                 }
             },
             {
@@ -81,6 +86,7 @@
         }
 
     Public Overrides Sub Update()
+        AddMessage(String.Empty)
         AddMessage("[blue]Help Menu:[/]")
         For Each cmd In stateCommands(PreviousState)
             AddMessage($"[teal]{cmd}[/] - {commandDescriptions(cmd)}")
