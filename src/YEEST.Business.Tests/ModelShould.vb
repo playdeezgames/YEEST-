@@ -25,6 +25,15 @@ Public Class ModelShould
 
         subject.Exists.ShouldBeFalse
     End Sub
+    <Fact>
+    Sub be_serializable()
+        Dim subject As IWorldModel = New WorldModel
+        subject.Start()
+
+        Dim actual = subject.Serialize()
+
+        actual.ShouldBe("{""Locations"":[],""Characters"":[],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
+    End Sub
 End Class
 
 

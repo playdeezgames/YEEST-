@@ -1,3 +1,4 @@
+Imports System.Text.Json
 Imports YEEST.Data
 
 Public Class WorldModel
@@ -14,4 +15,7 @@ Public Class WorldModel
     Public Sub Abandon() Implements IWorldModel.Abandon
         worldData = Nothing
     End Sub
+    Public Function Serialize() As String Implements IWorldModel.Serialize
+        Return JsonSerializer.Serialize(worldData)
+    End Function
 End Class
