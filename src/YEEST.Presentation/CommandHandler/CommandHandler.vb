@@ -42,4 +42,12 @@
         PopState()
         PushState(state)
     End Sub
+    Protected ReadOnly Property PreviousState As String
+        Get
+            Dim oldTop = stateStack.Pop()
+            Dim result = stateStack.Peek
+            stateStack.Push(oldTop)
+            Return result
+        End Get
+    End Property
 End Class

@@ -17,7 +17,9 @@
     End Property
     Public Overrides Sub Update()
         AddMessage("[fuchsia]YEEST!![/] Main Menu")
-        AddMessage("Commands: start, save, abandon, quit, *help")
+        If model.Exists Then
+            AddMessage("(there is a game in session)")
+        End If
     End Sub
 
     Protected Overrides Sub OnInvalidCommand()
@@ -26,6 +28,12 @@
 
     Protected Overrides Sub ParseCommand(tokens As IEnumerable(Of String))
         Select Case tokens.First
+            Case ContinueText
+                If model.Exists Then
+                    PushState(InPlayState)
+                Else
+                    AddMessage($"No game in session! Try '{StartText}' to start one!")
+                End If
             Case SaveText
                 If model.Exists Then
                     PushState(SaveState)
@@ -34,7 +42,7 @@
                 End If
             Case StartText
                 If model.Exists Then
-                    AddMessage("Game is already in session! Try 'continue' to return to it!")
+                    AddMessage($"Game is already in session! Try '{ContinueText}' to return to it!")
                 Else
                     model.Start()
                     PushState(InPlayState)

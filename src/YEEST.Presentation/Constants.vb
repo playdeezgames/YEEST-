@@ -10,12 +10,13 @@
     Friend Const TitleState As String = "Title"
 
     Friend Const AbandonText = "abandon"
-    Friend Const ExitText = "exit"
+    Friend Const ContinueText = "continue"
     Friend Const HelpText = "help"
     Friend Const GameText = "game"
     Friend Const NoText = "no"
     Friend Const QuitText = "quit"
     Friend Const SaveText = "save"
     Friend Const StartText = "start"
+    Friend Const StatusText = "status"
     Friend Const YesText = "yes"
 End Module

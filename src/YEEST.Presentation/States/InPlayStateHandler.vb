@@ -13,7 +13,7 @@
 
     Public Overrides ReadOnly Property DefaultCommand As String
         Get
-            Return GameText
+            Return HelpText
         End Get
     End Property
 
@@ -29,6 +29,10 @@
         Select Case tokens.First
             Case GameText
                 PopState()
+            Case HelpText
+                PushState(HelpState)
+            Case StatusText
+                'do nothing!
             Case Else
                 OnInvalidCommand()
         End Select

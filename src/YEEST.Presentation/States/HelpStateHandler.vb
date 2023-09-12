@@ -7,33 +7,92 @@
 
     Public Overrides ReadOnly Property Prompt As String
         Get
-            Return DefaultPrompt
+            Throw New NotImplementedException
         End Get
     End Property
 
     Public Overrides ReadOnly Property DefaultCommand As String
         Get
-            Return ExitText
+            Throw New NotImplementedException
         End Get
     End Property
 
+    Private Shared commandDescriptions As IReadOnlyDictionary(Of String, String) =
+        New Dictionary(Of String, String) From
+        {
+            {
+                AbandonText,
+                "Abandons the current session."
+            },
+            {
+                ContinueText,
+                "Resumes the current session."
+            },
+            {
+                StartText,
+                "Starts a new session."
+            },
+            {
+                HelpText,
+                "Provides context sensitive help."
+            },
+            {
+                QuitText,
+                "Quits the game."
+            },
+            {
+                SaveText,
+                "Save the current session."
+            },
+            {
+                GameText,
+                "Brings up the game menu."
+            },
+            {
+                StatusText,
+                "Shows the current in-game status."
+            }
+        }
+
+    Private Shared stateCommands As IReadOnlyDictionary(Of String, IReadOnlyList(Of String)) =
+        New Dictionary(Of String, IReadOnlyList(Of String)) From
+        {
+            {
+                TitleState,
+                New List(Of String) From
+                {
+                    AbandonText,
+                    ContinueText,
+                    StartText,
+                    HelpText,
+                    QuitText,
+                    SaveText
+                }
+            },
+            {
+                InPlayState,
+                New List(Of String) From
+                {
+                    GameText,
+                    HelpText,
+                    StatusText
+                }
+            }
+        }
+
     Public Overrides Sub Update()
         AddMessage("[blue]Help Menu:[/]")
-        AddMessage("Commands: *exit")
-        AddMessage("[teal]help[/]: brings up help(you are here)")
-        AddMessage("[teal]quit[/]: quits the game")
+        For Each cmd In stateCommands(PreviousState)
+            AddMessage($"[teal]{cmd}[/] - {commandDescriptions(cmd)}")
+        Next
+        PopState()
     End Sub
 
     Protected Overrides Sub OnInvalidCommand()
-        AddMessage(InvalidCommandMessage)
+        Throw New NotImplementedException
     End Sub
 
     Protected Overrides Sub ParseCommand(tokens As IEnumerable(Of String))
-        Select Case tokens.First
-            Case ExitText
-                PopState()
-            Case Else
-                OnInvalidCommand()
-        End Select
+        Throw New NotImplementedException
     End Sub
 End Class
