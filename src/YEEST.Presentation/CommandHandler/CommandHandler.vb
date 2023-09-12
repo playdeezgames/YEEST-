@@ -9,6 +9,7 @@
     Sub New(model As IWorldModel, messages As Queue(Of String), stateStack As Stack(Of String))
         Me.messages = messages
         Me.stateStack = stateStack
+        Me.model = model
     End Sub
 
     Protected Sub AddMessage(message As String)
