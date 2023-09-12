@@ -3,11 +3,12 @@
 
     Friend Const DefaultPrompt = "[white]>[/]"
 
-    Friend Const ConfirmQuitState As String = "ConfirmQuit"
+    Friend Const ConfirmAbandonState = "ConfirmAbandon"
+    Friend Const ConfirmQuitState = "ConfirmQuit"
     Friend Const HelpState = "Help"
     Friend Const InPlayState = "InPlay"
     Friend Const SaveState = "Save"
-    Friend Const TitleState As String = "Title"
+    Friend Const TitleState = "Title"
 
     Friend Const AbandonText = "abandon"
     Friend Const ContinueText = "continue"

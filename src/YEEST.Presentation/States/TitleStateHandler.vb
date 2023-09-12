@@ -50,7 +50,17 @@
             Case HelpText
                 PushState(HelpState)
             Case QuitText
-                PushState(ConfirmQuitState)
+                If model.Exists Then
+                    AddMessage($"Game is in session. You have to '{AbandonText}' first.")
+                Else
+                    PushState(ConfirmQuitState)
+                End If
+            Case AbandonText
+                If model.Exists Then
+                    PushState(ConfirmAbandonstate)
+                Else
+                    AddMessage("There is no game in session.")
+                End If
             Case Else
                 OnInvalidCommand()
         End Select
