@@ -7,6 +7,12 @@ Public Class World
         MyBase.New(data)
     End Sub
 
+    Public ReadOnly Property Avatar As ICharacter Implements IWorld.Avatar
+        Get
+            Return Nothing
+        End Get
+    End Property
+
     Public Shared Function Create(data As WorldData) As IWorld
         Return New World(data)
     End Function

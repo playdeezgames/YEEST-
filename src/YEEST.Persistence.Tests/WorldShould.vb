@@ -12,6 +12,7 @@ Public Class WorldShould
         Dim subject As IWorld = World.Create(data)
 
         subject.ShouldNotBeNull
+        subject.Avatar.ShouldBeNull
     End Sub
     <Fact>
     Sub create_location_when_calling_CreateLocation()
