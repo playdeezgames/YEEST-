@@ -16,6 +16,15 @@ Public Class ModelShould
 
         subject.Exists.ShouldBeTrue
     End Sub
+    <Fact>
+    Sub be_abandonable()
+        Dim subject As IWorldModel = New WorldModel
+        subject.Start()
+
+        subject.Abandon()
+
+        subject.Exists.ShouldBeFalse
+    End Sub
 End Class
 
 
