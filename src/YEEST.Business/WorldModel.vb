@@ -1,8 +1,14 @@
+Imports YEEST.Data
+
 Public Class WorldModel
     Implements IWorldModel
+    Private worldData As WorldData = Nothing
     Public ReadOnly Property Exists As Boolean Implements IWorldModel.Exists
         Get
-            Return False
+            Return worldData IsNot Nothing
         End Get
     End Property
+    Public Sub Start() Implements IWorldModel.Start
+        worldData = New WorldData
+    End Sub
 End Class

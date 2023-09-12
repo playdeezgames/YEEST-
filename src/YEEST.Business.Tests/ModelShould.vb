@@ -8,6 +8,14 @@ Public Class ModelShould
         subject.ShouldNotBeNull
         subject.Exists.ShouldBeFalse
     End Sub
+    <Fact>
+    Sub be_startable()
+        Dim subject As IWorldModel = New WorldModel
+
+        subject.Start()
+
+        subject.Exists.ShouldBeTrue
+    End Sub
 End Class
 
 
