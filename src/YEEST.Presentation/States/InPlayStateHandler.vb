@@ -19,7 +19,7 @@
 
     Public Overrides Sub Update()
         AddMessage(String.Empty)
-        AddMessage("Yer playing the game!")
+        AddMessage($"Character Name: {model.Avatar.Name}")
     End Sub
 
     Protected Overrides Sub OnInvalidCommand()

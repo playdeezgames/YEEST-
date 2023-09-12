@@ -1,4 +1,4 @@
-Public Class ModelShould
+Public Class WorldModelShould
     <Fact>
     Sub be_instantiable()
         Dim subject As IWorldModel
@@ -42,6 +42,15 @@ Public Class ModelShould
         subject.Deserialize("{""Locations"":[],""Characters"":[],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
 
         subject.Exists.ShouldBeTrue
+    End Sub
+    <Fact>
+    Sub have_avatar_model()
+        Dim subject As IWorldModel = New WorldModel
+        subject.Start()
+
+        Dim actual = subject.Avatar
+
+        actual.ShouldNotBeNull
     End Sub
 End Class
 
