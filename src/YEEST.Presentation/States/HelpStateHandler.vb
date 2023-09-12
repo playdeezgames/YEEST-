@@ -1,8 +1,8 @@
 ﻿Friend Class HelpStateHandler
     Inherits CommandHandler
 
-    Public Sub New(messages As Queue(Of String), stateStack As Stack(Of String))
-        MyBase.New(messages, stateStack)
+    Public Sub New(model As IWorldModel, messages As Queue(Of String), stateStack As Stack(Of String))
+        MyBase.New(model, messages, stateStack)
     End Sub
 
     Public Overrides ReadOnly Property Prompt As String

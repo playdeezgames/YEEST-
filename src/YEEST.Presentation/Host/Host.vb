@@ -5,12 +5,14 @@ Public Class Host
     Private ReadOnly handlerStack As New Stack(Of String)
     Private ReadOnly commandHandlers As New Dictionary(Of String, ICommandHandler)
     Private messages As New Queue(Of String)
+    Private ReadOnly model As IWorldModel
     Sub New(outputter As Action(Of String), inputter As Func(Of String, String, String))
         Me.outputter = outputter
         Me.inputter = inputter
-        commandHandlers.Add(TitleState, New TitleStateHandler(messages, handlerStack))
-        commandHandlers.Add(ConfirmQuitState, New ConfirmQuitStateHandler(messages, handlerStack))
-        commandHandlers.Add(HelpState, New HelpStateHandler(messages, handlerStack))
+        Me.model = New WorldModel
+        commandHandlers.Add(TitleState, New TitleStateHandler(model, messages, handlerStack))
+        commandHandlers.Add(ConfirmQuitState, New ConfirmQuitStateHandler(model, messages, handlerStack))
+        commandHandlers.Add(HelpState, New HelpStateHandler(model, messages, handlerStack))
         handlerStack.Push(TitleState)
     End Sub
     Private ReadOnly Property CurrentCommandHandler As ICommandHandler

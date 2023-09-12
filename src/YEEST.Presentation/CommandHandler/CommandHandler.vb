@@ -2,10 +2,11 @@
     Implements ICommandHandler
     Private messages As Queue(Of String)
     Private stateStack As Stack(Of String)
+    Protected ReadOnly Property model As IWorldModel
     Public MustOverride ReadOnly Property Prompt As String Implements ICommandHandler.Prompt
     Public MustOverride ReadOnly Property DefaultCommand As String Implements ICommandHandler.DefaultCommand
 
-    Sub New(messages As Queue(Of String), stateStack As Stack(Of String))
+    Sub New(model As IWorldModel, messages As Queue(Of String), stateStack As Stack(Of String))
         Me.messages = messages
         Me.stateStack = stateStack
     End Sub

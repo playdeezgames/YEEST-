@@ -4,7 +4,7 @@
     <RootNamespace>YEEST.Presentation</RootNamespace>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OptionStrict>On</OptionStrict>
-    <ImportedNamespaces>Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,YEEST.Presentation=True</ImportedNamespaces>
+    <ImportedNamespaces>YEEST.Business=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,YEEST.Presentation=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -14,5 +14,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YEEST.Business\YEEST.Business.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="YEEST.Business" />
+  </ItemGroup>
 
 </Project>

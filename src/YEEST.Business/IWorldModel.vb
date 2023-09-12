@@ -1,2 +1,2 @@
-﻿Friend Interface IWorldModel
+﻿Public Interface IWorldModel
 End Interface
