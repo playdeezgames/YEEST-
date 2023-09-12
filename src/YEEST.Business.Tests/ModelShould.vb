@@ -1,5 +1,3 @@
-Imports System
-Imports Xunit
 Public Class ModelShould
     <Fact>
     Sub be_instantiable()
@@ -8,6 +6,7 @@ Public Class ModelShould
         subject = New WorldModel
 
         subject.ShouldNotBeNull
+        subject.Exists.ShouldBeFalse
     End Sub
 End Class
 
