@@ -15,6 +15,11 @@ Public Class WorldModel
     Public Sub Abandon() Implements IWorldModel.Abandon
         worldData = Nothing
     End Sub
+
+    Public Sub Deserialize(serialized As String) Implements IWorldModel.Deserialize
+        worldData = JsonSerializer.Deserialize(Of WorldData)(serialized)
+    End Sub
+
     Public Function Serialize() As String Implements IWorldModel.Serialize
         Return JsonSerializer.Serialize(worldData)
     End Function

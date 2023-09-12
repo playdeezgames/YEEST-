@@ -34,6 +34,15 @@ Public Class ModelShould
 
         actual.ShouldBe("{""Locations"":[],""Characters"":[],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
     End Sub
+    <Fact>
+    Sub be_deserializeable()
+        Dim subject As IWorldModel = New WorldModel
+        subject.Start()
+
+        subject.Deserialize("{""Locations"":[],""Characters"":[],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
+
+        subject.Exists.ShouldBeTrue
+    End Sub
 End Class
 
 
