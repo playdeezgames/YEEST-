@@ -14,14 +14,6 @@ Public Class WorldShould
         subject.ShouldNotBeNull
     End Sub
     <Fact>
-    Sub serialize_when_calling_SerializedData()
-        Dim subject As IWorld = World.Create(New WorldData)
-
-        Dim actual = subject.SerializedData
-
-        actual.ShouldBe("{""Locations"":[],""Characters"":[],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
-    End Sub
-    <Fact>
     Sub create_location_when_calling_CreateLocation()
         Dim data = New WorldData
         Dim subject As IWorld = World.Create(data)
@@ -31,7 +23,6 @@ Public Class WorldShould
 
         actual.ShouldNotBeNull()
         data.Locations.ShouldHaveSingleItem()
-        subject.SerializedData.ShouldBe("{""Locations"":[{""Characters"":[],""Metadatas"":{""LocationType"":""location-type""},""Flags"":[],""Statistics"":{}}],""Characters"":[],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
     End Sub
     <Fact>
     Sub use_recycled_locations_when_available()
@@ -98,34 +89,26 @@ Public Class WorldShould
         actual.ShouldNotBeNull()
         actual.CharacterType.ShouldBe("character-type")
         data.Characters.ShouldHaveSingleItem()
-        subject.SerializedData.ShouldBe("{""Locations"":[],""Characters"":[{""Metadatas"":{""CharacterType"":""character-type""},""Flags"":[],""Statistics"":{}}],""Metadatas"":{},""Flags"":[],""Statistics"":{}}")
     End Sub
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As IWorld)
-        subject.SerializedData.ShouldContain(key)
-        subject.SerializedData.ShouldContain(value)
         data.Metadatas.ShouldHaveSingleItem
         data.Metadatas.ShouldContainKeyAndValue(key, value)
     End Sub
 
     Protected Overrides Sub ValidateRemoveMetadata(key As String, value As String, data As WorldData, subject As IWorld)
-        subject.SerializedData.ShouldNotContain(key)
-        subject.SerializedData.ShouldNotContain(value)
+        data.Metadatas.ShouldBeEmpty
     End Sub
 
     Protected Overrides Sub ValidateSetFlag(name As String, value As Boolean, data As WorldData, subject As IWorld)
         If value Then
             data.Flags.ShouldContain(name)
-            subject.SerializedData.ShouldContain(name)
         Else
             data.Flags.ShouldNotContain(name)
-            subject.SerializedData.ShouldNotContain(name)
         End If
     End Sub
 
     Protected Overrides Sub ValidateSetStatistic(statisticName As String, statisticValue As Integer, data As WorldData, subject As IWorld)
         data.Statistics(statisticName).ShouldBe(statisticValue)
-        subject.SerializedData.ShouldContain(statisticName)
-        subject.SerializedData.ShouldContain(statisticValue.ToString())
     End Sub
 
     Protected Overrides Function CreateSubject(data As WorldData) As IWorld

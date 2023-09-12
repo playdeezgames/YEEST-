@@ -1,4 +1,3 @@
-Imports System.Text.Json
 Imports YEEST.Data
 
 Public Class World
@@ -7,12 +6,6 @@ Public Class World
     Private Sub New(data As WorldData)
         MyBase.New(data)
     End Sub
-
-    Public ReadOnly Property SerializedData As String Implements IWorld.SerializedData
-        Get
-            Return JsonSerializer.Serialize(WorldData)
-        End Get
-    End Property
 
     Public Shared Function Create(data As WorldData) As IWorld
         Return New World(data)
