@@ -21,9 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{803C5FB8
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "YEEST.Business", "YEEST.Business\YEEST.Business.vbproj", "{6072E585-BD29-4E66-8434-7FCAC0B1798C}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "YEEST.Presentation", "YEEST.Presentation\YEEST.Presentation.vbproj", "{655B3675-E81C-49D3-A4CF-8AB8AAEAB175}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "YEEST.Presentation", "YEEST.Presentation\YEEST.Presentation.vbproj", "{655B3675-E81C-49D3-A4CF-8AB8AAEAB175}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "YEEST.Presentation.Tests", "YEEST.Presentation.Tests\YEEST.Presentation.Tests.vbproj", "{920B71C1-9EDB-40FF-B848-EB65BB9A3D98}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "YEEST.Presentation.Tests", "YEEST.Presentation.Tests\YEEST.Presentation.Tests.vbproj", "{920B71C1-9EDB-40FF-B848-EB65BB9A3D98}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "YEEST.Business.Tests", "YEEST.Business.Tests\YEEST.Business.Tests.vbproj", "{B6E0E392-FC18-4755-AC6F-803E19090FFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,12 +61,17 @@ Global
 		{920B71C1-9EDB-40FF-B848-EB65BB9A3D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{920B71C1-9EDB-40FF-B848-EB65BB9A3D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{920B71C1-9EDB-40FF-B848-EB65BB9A3D98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E0E392-FC18-4755-AC6F-803E19090FFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E0E392-FC18-4755-AC6F-803E19090FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E0E392-FC18-4755-AC6F-803E19090FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E0E392-FC18-4755-AC6F-803E19090FFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{09371301-CA67-4CA6-BA2C-417EF211576D} = {803C5FB8-8EDB-46CF-9B12-077F29539E1C}
+		{920B71C1-9EDB-40FF-B848-EB65BB9A3D98} = {803C5FB8-8EDB-46CF-9B12-077F29539E1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10F271DD-36C7-4F9E-951C-6CC4EAD91B3F}
