@@ -3,14 +3,25 @@ Imports YEEST.Data
 Public Class World
     Inherits WorldDataClient
     Implements IWorld
+    Friend Const AvatarIdStatistic = "AvatarId"
     Private Sub New(data As WorldData)
         MyBase.New(data)
     End Sub
 
-    Public ReadOnly Property Avatar As ICharacter Implements IWorld.Avatar
+    Public Property Avatar As ICharacter Implements IWorld.Avatar
         Get
-            Return Nothing
+            Return If(
+                HasStatistic(AvatarIdStatistic),
+                New Character(WorldData, GetStatistic(AvatarIdStatistic)),
+                Nothing)
         End Get
+        Set(value As ICharacter)
+            If value Is Nothing Then
+                RemoveStatistic(AvatarIdStatistic)
+                Return
+            End If
+            SetStatistic(AvatarIdStatistic, value.Id)
+        End Set
     End Property
 
     Public Shared Function Create(data As WorldData) As IWorld

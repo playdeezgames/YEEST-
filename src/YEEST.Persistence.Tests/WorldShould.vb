@@ -91,6 +91,25 @@ Public Class WorldShould
         actual.CharacterType.ShouldBe("character-type")
         data.Characters.ShouldHaveSingleItem()
     End Sub
+    <Fact>
+    Public Sub assign_an_avatar()
+        Dim subject = CreateSubject(New WorldData)
+        Dim character = subject.CreateCharacter("character-type")
+
+        subject.Avatar = character
+
+        subject.Avatar.ShouldNotBeNull
+        subject.Avatar.Id.ShouldBe(character.Id)
+    End Sub
+    <Fact>
+    Public Sub remove_avatar()
+        Dim subject = CreateSubject(New WorldData)
+        subject.Avatar = subject.CreateCharacter("character-type")
+
+        subject.Avatar = Nothing
+
+        subject.Avatar.ShouldBeNull
+    End Sub
     Protected Overrides Sub ValidateSetMetadata(key As String, value As String, data As WorldData, subject As IWorld)
         data.Metadatas.ShouldHaveSingleItem
         data.Metadatas.ShouldContainKeyAndValue(key, value)
